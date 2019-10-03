@@ -18,14 +18,18 @@ class PartyViewController: UIViewController {
 	var isCreator = Bool()
 	var timer: Timer?
 	var mainTimer: Timer?
-	@IBOutlet weak var currentPartyMemberCount: UILabel!
 	@IBOutlet weak var readyButton: UIButton!
 	@IBOutlet weak var secondsLeft: UILabel!
+	@IBOutlet weak var myColorView: UIView!
+	@IBOutlet weak var myColorLabel: UILabel!
 	
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
 		getParty()
+		myColorView.backgroundColor = UIColor(hexString: myColor)
+		myColorView.tintColor = UIColor(hexString: myColor)
+		myColorLabel.textColor = myColorView.backgroundColor?.isDarkColor == true ? .white : .black
     }
 	
 	func getParty() {
@@ -33,7 +37,6 @@ class PartyViewController: UIViewController {
 		ref.child("members").observe(.value) { (snapshot) in
 			let members = JSON(snapshot.value!)
 			
-			self.currentPartyMemberCount.text = String(members.count) // change current party member count
 			var latestMemberXCoordinates = self.view.frame.width/4
 			var latestMemberYCoordinates = 213
 			for member in members {
