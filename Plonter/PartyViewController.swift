@@ -20,6 +20,7 @@ class PartyViewController: UIViewController {
 	var mainTimer: Timer?
 	@IBOutlet weak var currentPartyMemberCount: UILabel!
 	@IBOutlet weak var readyButton: UIButton!
+	@IBOutlet weak var secondsLeft: UILabel!
 	
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,10 +54,13 @@ class PartyViewController: UIViewController {
 				latestMemberXCoordinates+=200
 			}
 		}
+		
 		// create timer if creator - maybe change so user picks time
 		if self.isCreator {
 			timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
 			mainTimer = Timer.scheduledTimer(timeInterval: 30, target: self, selector: #selector(timerDidComplete), userInfo: nil, repeats: false)
+		} else {
+			self.checkTime()
 		}
 		
 	}
@@ -65,6 +69,15 @@ class PartyViewController: UIViewController {
 		let timeRemaining = mainTimer!.fireDate.timeIntervalSince(Date())
 		let ref = Database.database().reference().child("Parties").child(partyID)
 		ref.child("timer").setValue(timeRemaining.stringFromTimeInterval())
+		secondsLeft.text = "\(timeRemaining.stringFromTimeInterval()) seconds left to join"
+	}
+	
+	func checkTime() {
+		let ref = Database.database().reference().child("Parties").child(partyID)
+		ref.child("timer").observe(.value) { (snapshot) in
+			let timeleft = snapshot.value!
+			self.secondsLeft.text = "\(timeleft) seconds left to join"
+		}
 	}
 	
 	@objc func timerDidComplete(_ sender: Timer) {

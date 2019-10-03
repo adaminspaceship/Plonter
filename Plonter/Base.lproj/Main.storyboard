@@ -104,6 +104,13 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="00 Seconds left to join" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BDo-fE-C43">
+                                <rect key="frame" x="63" y="748" width="249" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="25"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="U2H-JX-Qfd"/>
@@ -111,6 +118,7 @@
                     <navigationItem key="navigationItem" id="WfE-HU-4Ij"/>
                     <connections>
                         <outlet property="currentPartyMemberCount" destination="dro-OT-Stm" id="PBg-OX-NP1"/>
+                        <outlet property="secondsLeft" destination="BDo-fE-C43" id="afF-kn-ZFd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UOu-MU-3T5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
