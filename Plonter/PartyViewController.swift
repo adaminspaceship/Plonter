@@ -128,7 +128,14 @@ class PartyViewController: UIViewController {
 		
 		
 	}
-    
+	
+	func checkIfWinner(_ winnerHEX: String) {
+		if myColor == winnerHEX {
+			// you win
+		} else {
+			// you lose
+		}
+	}
 
     /*
     // MARK: - Navigation
