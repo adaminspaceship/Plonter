@@ -51,7 +51,7 @@ class DisplayPinViewController: UIViewController {
 		let partyPin = fourUniqueDigits
 		let user_id = UserDefaults.standard.string(forKey: "user_id")
 		partyID = newPartyRef.key!
-		newPartyRef.setValue(["members":[user_id:Colors.yellow],"pin":partyPin])
+		newPartyRef.setValue(["members":[Colors.randomizeHexColor():user_id],"pin":partyPin])
 		toggleHide(shouldHide: false)
 		for digit in PinDigits {
 			digit.text = partyPin[digit.tag]
@@ -76,6 +76,7 @@ class DisplayPinViewController: UIViewController {
         // Pass the selected object to the new view controller.
 		let partyViewController = segue.destination as? PartyViewController
 		partyViewController?.partyID = partyID
+		partyViewController?.isCreator = true
     }
     
 

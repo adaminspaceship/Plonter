@@ -15,20 +15,21 @@ class PartyViewController: UIViewController {
 	
 	var myColor = String()
 	var partyID = String()
-	
+	var isCreator = Bool()
+	var timer: Timer?
+	var mainTimer: Timer?
 	@IBOutlet weak var currentPartyMemberCount: UILabel!
 	@IBOutlet weak var readyButton: UIButton!
 	
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-		
 		getParty()
     }
 	
 	func getParty() {
-		let ref = Database.database().reference().child("Parties").child(partyID).child("members")
-		ref.observe(.value) { (snapshot) in
+		let ref = Database.database().reference().child("Parties").child(partyID)
+		ref.child("members").observe(.value) { (snapshot) in
 			let members = JSON(snapshot.value!)
 			
 			self.currentPartyMemberCount.text = String(members.count) // change current party member count
@@ -51,20 +52,26 @@ class PartyViewController: UIViewController {
 				})
 				latestMemberXCoordinates+=200
 			}
-			
+		}
+		// create timer if creator - maybe change so user picks time
+		if self.isCreator {
+			timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
+			mainTimer = Timer.scheduledTimer(timeInterval: 30, target: self, selector: #selector(timerDidComplete), userInfo: nil, repeats: false)
 		}
 		
 	}
 	
-	@IBAction func readyButtonTapped(_ sender: UIButton) {
-		sender.isSelected = true
-		sender.setBackgroundColor(color: UIColor(hexString: myColor), forState: .selected)
-		sender.setTitleColor(sender.backgroundColor?.isDarkColor == true ? .white : .black, for: .selected)
-		sender.layer.borderColor = UIColor.black.cgColor
-		sender.layer.cornerRadius = 8
-		sender.clipsToBounds = true
+	@objc func updateTimer(_ sender: Timer) {
+		let timeRemaining = mainTimer!.fireDate.timeIntervalSince(Date())
+		let ref = Database.database().reference().child("Parties").child(partyID)
+		ref.child("timer").setValue(timeRemaining.stringFromTimeInterval())
 	}
 	
+	@objc func timerDidComplete(_ sender: Timer) {
+		print("done")
+		timer?.invalidate()
+		// do animation pick winner
+	}
     
 
     /*

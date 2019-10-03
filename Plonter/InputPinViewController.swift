@@ -65,6 +65,7 @@ class InputPinViewController: UIViewController, PinCodeTextFieldDelegate {
 		let partyViewController = segue.destination as? PartyViewController
 		partyViewController?.partyID = self.partyID
 		partyViewController?.myColor = self.myColor
+		partyViewController?.isCreator = false
     }
     
 
