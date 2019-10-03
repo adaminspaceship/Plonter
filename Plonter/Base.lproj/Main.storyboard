@@ -38,12 +38,17 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="Uez-vs-Vrn">
+                                <rect key="frame" x="177" y="396" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="CQ0-zN-mAa"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Pin" selectedImage="pin" catalog="system" id="oAU-FD-LDE"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="Uez-vs-Vrn" id="wOX-x4-2P3"/>
                         <outlet property="pinCodeField" destination="kBC-X6-hpv" id="zeg-cL-PDc"/>
                         <segue destination="Kyc-aT-yOG" kind="presentation" identifier="toParty" modalPresentationStyle="fullScreen" id="0xh-Fc-f0n"/>
                     </connections>
@@ -245,6 +250,6 @@
         <image name="square.and.arrow.up" catalog="system" width="56" height="64"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="pVP-Bd-rRA"/>
+        <segue reference="0xh-Fc-f0n"/>
     </inferredMetricsTieBreakers>
 </document>

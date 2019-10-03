@@ -17,7 +17,6 @@ class PartyViewController: UIViewController {
 	var partyID = String()
 	var isCreator = Bool()
 	var timer: Timer?
-	var mainTimer: Timer?
 	@IBOutlet weak var readyButton: UIButton!
 	@IBOutlet weak var secondsLeft: UILabel!
 	@IBOutlet weak var myColorView: UIView!
@@ -29,6 +28,7 @@ class PartyViewController: UIViewController {
 		getParty()
 		myColorView.backgroundColor = UIColor(hexString: myColor)
 		myColorView.tintColor = UIColor(hexString: myColor)
+//		myColorView.
 		myColorLabel.textColor = myColorView.backgroundColor?.isDarkColor == true ? .white : .black
     }
 	
@@ -60,33 +60,73 @@ class PartyViewController: UIViewController {
 		
 		// create timer if creator - maybe change so user picks time
 		if self.isCreator {
-			timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
-			mainTimer = Timer.scheduledTimer(timeInterval: 30, target: self, selector: #selector(timerDidComplete), userInfo: nil, repeats: false)
+			let endTime = Int(Date().timeIntervalSince1970)+30 // change depending on user
+			startTimer(endTime)
 		} else {
-			self.checkTime()
+			self.startClientTimer()
 		}
 		
 	}
 	
+	func startTimer(_ endTime: Int) {
+		let ref = Database.database().reference().child("Parties").child(partyID)
+		ref.child("endTime").setValue(String(endTime))
+		timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
+		self.endTime = endTime
+		
+	}
+	var endTime = Int()
+//	ref.child("endTime").observe(.value) { (snapshot) in
+//		let retrievedEndTime =
+//	}
+	
 	@objc func updateTimer(_ sender: Timer) {
-		let timeRemaining = mainTimer!.fireDate.timeIntervalSince(Date())
-		let ref = Database.database().reference().child("Parties").child(partyID)
-		ref.child("timer").setValue(timeRemaining.stringFromTimeInterval())
-		secondsLeft.text = "\(timeRemaining.stringFromTimeInterval()) seconds left to join"
+		let secondsRemaining = self.endTime-Int(Date().timeIntervalSince1970)
+		secondsLeft.text = "\(secondsRemaining) seconds left to join"
+		if secondsRemaining == 0 { self.animatebubbles() }
 	}
-	
-	func checkTime() {
+//	let retrievedEndTime = Date(timeIntervalSince1970: Double(endTime))
+	func startClientTimer() {
 		let ref = Database.database().reference().child("Parties").child(partyID)
-		ref.child("timer").observe(.value) { (snapshot) in
-			let timeleft = snapshot.value!
-			self.secondsLeft.text = "\(timeleft) seconds left to join"
+		ref.child("endTime").observeSingleEvent(of: .value) { (snapshot) in
+			let endTime = snapshot.value as! String
+			self.endTime = Int(endTime)!
+			
 		}
+		timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateClientTimer), userInfo: nil, repeats: true)
+	}
+	@objc func updateClientTimer(_ sender: Timer) {
+		let secondsRemaining = self.endTime-Int(Date().timeIntervalSince1970)
+		self.secondsLeft.text = "\(secondsRemaining) seconds left to join"
+		if secondsRemaining == 0 { self.animatebubbles() }
 	}
 	
-	@objc func timerDidComplete(_ sender: Timer) {
-		print("done")
+	func animatebubbles() {
 		timer?.invalidate()
-		// do animation pick winner
+		secondsLeft.isHidden = true
+		if isCreator {
+			let ref = Database.database().reference().child("Parties").child(partyID)
+			ref.child("members").observeSingleEvent(of: .value) { (snapshot) in
+				var members = [String]()
+				for item in snapshot.children {
+					members.append((item as AnyObject).key)
+				}
+				let winner = members.randomElement()!
+				ref.child("winner").setValue(winner)
+				self.view.backgroundColor = UIColor(hexString: winner)
+			}
+		} else {
+			sleep(1)
+			let ref = Database.database().reference().child("Parties").child(partyID)
+			ref.child("winner").observe(.value) { (snapshot) in
+				let winner = snapshot.value!
+				print(winner)
+				self.view.backgroundColor = UIColor(hexString: winner as! String)
+			}
+		}
+		
+		
+		
 	}
     
 

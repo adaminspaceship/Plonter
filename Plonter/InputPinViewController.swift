@@ -13,6 +13,7 @@ import SwiftyJSON
 
 class InputPinViewController: UIViewController, PinCodeTextFieldDelegate {
 
+	@IBOutlet weak var activityIndicator: UIActivityIndicatorView!
 	@IBOutlet weak var pinCodeField: PinCodeTextField!
 	var partyID = String()
 	var myColor = String()
@@ -27,7 +28,8 @@ class InputPinViewController: UIViewController, PinCodeTextFieldDelegate {
 	// add member to party
 
 	func textFieldDidEndEditing(_ textField: PinCodeTextField) {
-		let pinCode = textField.text!
+		activityIndicator.startAnimating()
+		let pinCode = textField.text ?? ""
 		let partyRef = Database.database().reference().child("Parties")
 		let ref = partyRef.queryOrdered(byChild: "pin").queryEqual(toValue: pinCode)
 		let user_id = UserDefaults.standard.string(forKey: "user_id")
@@ -47,7 +49,7 @@ class InputPinViewController: UIViewController, PinCodeTextFieldDelegate {
 					partyRef.child(item).child("members").child(randomColor).setValue(user_id!)
 					self.myColor = randomColor
 				}
-				
+				self.activityIndicator.stopAnimating()
 				self.performSegue(withIdentifier: "toParty", sender: self)
 			}
 			
