@@ -29,7 +29,6 @@ struct Colors {
 		"E67E22",
 		"C0392B",
 		"7F8C8D",
-		"ECF0F1"
 	]
 	
 	// MARK: Functions

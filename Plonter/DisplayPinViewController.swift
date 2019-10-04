@@ -11,13 +11,15 @@ import FirebaseDatabase
 
 class DisplayPinViewController: UIViewController {
 	
+	@IBOutlet weak var secondsStepper: UIStepper!
+	@IBOutlet weak var secondsToJoin: UILabel!
 	// MARK: Declare Variables
 	@IBOutlet weak var shareButton: UIButton!
 	@IBOutlet weak var doneButton: UIButton!
 	@IBOutlet weak var pinLabel: UILabel!
 	@IBOutlet var PinDigits: [UILabel]!
 	@IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-	
+	var myColor = String()
 	var partyID = String()
 	var fourUniqueDigits: String {
 		var result = ""
@@ -34,6 +36,8 @@ class DisplayPinViewController: UIViewController {
 		// hide while loading
 		toggleHide(shouldHide: true)
 		createNewParty()
+		secondsStepper.minimumValue = 1
+		secondsStepper.maximumValue = 6
     }
     
 	@IBAction func didPressSharePin(_ sender: Any) {
@@ -43,15 +47,23 @@ class DisplayPinViewController: UIViewController {
 	}
 	
 	@IBAction func didPressDone(_ sender: Any) {
+		let newPartyRef = Database.database().reference().child("Parties").child(partyID)
+		newPartyRef.child("secondsToJoin").setValue(String(Int(secondsStepper.value)*10))
+		self.performSegue(withIdentifier: "toCreateParty", sender: self)
 	}
 	
+	@IBAction func secondsStepperChanged(_ sender: UIStepper) {
+		secondsToJoin.text = "\(Int(sender.value)*10) seconds to join party"
+	}
 	
 	func createNewParty() {
 		let newPartyRef = Database.database().reference().child("Parties").childByAutoId()
 		let partyPin = fourUniqueDigits
 		let user_id = UserDefaults.standard.string(forKey: "user_id")
 		partyID = newPartyRef.key!
-		newPartyRef.setValue(["members":[Colors.randomizeHexColor():user_id],"pin":partyPin])
+		myColor = Colors.randomizeHexColor()
+		
+		newPartyRef.setValue(["members":[myColor:user_id],"pin":partyPin,"secondsToJoin":Int(secondsStepper.value)])
 		toggleHide(shouldHide: false)
 		for digit in PinDigits {
 			digit.text = partyPin[digit.tag]
@@ -77,6 +89,7 @@ class DisplayPinViewController: UIViewController {
 		let partyViewController = segue.destination as? PartyViewController
 		partyViewController?.partyID = partyID
 		partyViewController?.isCreator = true
+		partyViewController?.myColor = myColor
     }
     
 

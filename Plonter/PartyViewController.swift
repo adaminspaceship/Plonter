@@ -17,10 +17,11 @@ class PartyViewController: UIViewController {
 	var partyID = String()
 	var isCreator = Bool()
 	var timer: Timer?
-	@IBOutlet weak var readyButton: UIButton!
 	@IBOutlet weak var secondsLeft: UILabel!
 	@IBOutlet weak var myColorView: UIView!
 	@IBOutlet weak var myColorLabel: UILabel!
+	var memberArray = [String]()
+	var bubbles = [UIView]()
 	
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +35,7 @@ class PartyViewController: UIViewController {
 	
 	func getParty() {
 		let ref = Database.database().reference().child("Parties").child(partyID)
+		var secondsToJoinPicked = Int()
 		ref.child("members").observe(.value) { (snapshot) in
 			let members = JSON(snapshot.value!)
 			
@@ -42,7 +44,8 @@ class PartyViewController: UIViewController {
 			for member in members {
 				if latestMemberXCoordinates > self.view.frame.width { latestMemberXCoordinates = self.view.frame.width/4 ; latestMemberYCoordinates+=125 }
 				let bubble = UIView(frame: CGRect(x: Int(latestMemberXCoordinates), y: latestMemberYCoordinates, width: 1, height: 1))
-				
+//				self.memberArray.append(member.0)
+//				print(self.memberArray)
 				//customise bubble
 				let userColor = UIColor(hexString: "#\(member.0)")
 				bubble.backgroundColor = userColor
@@ -51,17 +54,21 @@ class PartyViewController: UIViewController {
 				bubble.clipsToBounds = true
 				//add bubble to subview
 				self.view.addSubview(bubble)
+				self.bubbles.append(bubble)
 				UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: [], animations:  {
 					bubble.transform = CGAffineTransform(scaleX: 85, y: 85)
 				})
 				latestMemberXCoordinates+=200
+				
 			}
 		}
 		
 		// create timer if creator - maybe change so user picks time
 		if self.isCreator {
-			let endTime = Int(Date().timeIntervalSince1970)+30 // change depending on user
-			startTimer(endTime)
+			ref.child("secondsToJoin").observeSingleEvent(of: .value) { (snapshot) in
+				let endTime = Int(Date().timeIntervalSince1970)+Int(snapshot.value as! String)! // change depending on user
+				self.startTimer(endTime)
+			}
 		} else {
 			self.startClientTimer()
 		}
@@ -113,29 +120,63 @@ class PartyViewController: UIViewController {
 				}
 				let winner = members.randomElement()!
 				ref.child("winner").setValue(winner)
-				self.view.backgroundColor = UIColor(hexString: winner)
+				self.checkIfWinner(winner)
 			}
 		} else {
-			sleep(1)
 			let ref = Database.database().reference().child("Parties").child(partyID)
 			ref.child("winner").observe(.value) { (snapshot) in
-				let winner = snapshot.value!
-				print(winner)
-				self.view.backgroundColor = UIColor(hexString: winner as! String)
+				if let winner = snapshot.value! as? String {
+					print(winner)
+					self.view.backgroundColor = UIColor(hexString: winner)
+					self.checkIfWinner(winner)
+				}
 			}
 		}
-		
-		
 		
 	}
 	
+	
+	
 	func checkIfWinner(_ winnerHEX: String) {
+		
+		// hiding
+		for bubble in self.bubbles {
+			bubble.removeFromSuperview()
+		}
+		self.secondsLeft.isHidden = true
+		self.myColorView.isHidden = true
+		self.myColorLabel.isHidden = true
+		let fillScreenView = UIView(frame: CGRect(x: self.view.center.x, y: self.view.center.y, width: 1, height: 1))
+		fillScreenView.backgroundColor = UIColor(hexString: winnerHEX)
+		fillScreenView.tintColor = UIColor(hexString: winnerHEX)
+		fillScreenView.cornerRadius = fillScreenView.frame.width/2
+		self.view.addSubview(fillScreenView)
+		
+		// create text label
+		let label = UILabel(frame: CGRect(x: 0, y: self.view.center.y, width: 300, height: 85))
+		label.center = CGPoint(x: self.view.frame.width/2, y: self.view.frame.height/2)
+		label.textAlignment = .center
+		label.font = UIFont.systemFont(ofSize: 55, weight: .semibold)
+		//animate background
+		UIView.animate(withDuration: 2, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.8, options: .curveEaseInOut, animations:  {
+			fillScreenView.transform = CGAffineTransform(scaleX: 1000, y: 1000)
+			self.view.addSubview(label)
+		})
+		// add sound
 		if myColor == winnerHEX {
 			// you win
+			print("you won!")
+			label.text = "You Won ⭐️"
+			label.textColor = self.view.backgroundColor?.isDarkColor == true ? .white : .black
 		} else {
 			// you lose
+			print("you lost!")
+			label.text = "You Lost ☹️"
+			label.textColor = self.view.backgroundColor?.isDarkColor == true ? .white : .black
 		}
 	}
+
+	
 
     /*
     // MARK: - Navigation
