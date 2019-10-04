@@ -8,7 +8,7 @@
 
 import UIKit
 import Firebase
-
+import SwiftyJSON
 
 @available(iOS 13.0, *)
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
@@ -66,13 +66,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 	func scene(_ scene: UIScene, continue userActivity: NSUserActivity) {
 		if let incomingURL = userActivity.webpageURL {
 			print("incoming URL is \(incomingURL)")
-			let linkHandled = DynamicLinks.dynamicLinks().handleUniversalLink(incomingURL) { (dynamicLink, error) in
+			let linkHandled = DynamicLinks.dynamicLinks().handleUniversalLink(incomingURL) { (dynamiclink, error) in
 				guard error == nil else {
 					print("found error: \(error!.localizedDescription)")
 					return
 				}
-				if let dynamicLink = dynamicLink {
-					self.handleincomingDynamicLink(dynamicLink)
+				if let dynamiclink = dynamiclink {
+					self.handleincomingDynamicLink(dynamiclink)
 				}
 			}
 		}
@@ -84,6 +84,53 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 			return
 		}
 		print(url)
+		
+		guard let components = URLComponents(url: url, resolvingAgainstBaseURL: false) else { return }
+		let queryItems = components.queryItems
+		
+		if components.path == "/parties" {
+			if let partyIDQueryItem = queryItems?.first(where: {$0.name == "party"}) {
+				guard let partyID = partyIDQueryItem.value else { return }
+				let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+				guard let partyViewController = storyboard.instantiateViewController(identifier: "PartyViewController") as? PartyViewController
+					else { return }
+				partyViewController.partyID = partyID
+				partyViewController.isCreator = false
+				shouldJoinParty(partyID, completion: { (myColor) -> Void in
+					partyViewController.myColor = myColor
+					partyViewController.modalPresentationStyle = .fullScreen
+					(self.window?.rootViewController as? UIViewController)?.present(partyViewController, animated: true, completion: nil)
+				})
+			}
+		}
+	}
+	
+	func shouldJoinParty(_ partyID: String, completion: @escaping (String) -> ()) {
+		let partyRef = Database.database().reference().child("Parties")
+		let ref = partyRef.child(partyID)
+		let user_id = UserDefaults.standard.string(forKey: "user_id")
+		
+		ref.observeSingleEvent(of: .value) { (snapshot) in
+			let postDict = snapshot.value as? [String : AnyObject] ?? [:]
+			if postDict.isEmpty {
+				// party doesn't exist
+			} else {
+				// party exists
+				let members = JSON(postDict["members"])
+				let randomColor = Colors.randomizeHexColor()
+				if members[randomColor].stringValue != "" {
+					// change color first
+					let newRandomColor = Colors.randomizeHexColor()
+					ref.child("members").child(newRandomColor).setValue(user_id!)
+					completion(newRandomColor)
+				} else {
+					// create the user with this color
+					ref.child("members").child(randomColor).setValue(user_id!)
+					completion(randomColor)
+				}
+			}
+			
+		}
 	}
 
 }

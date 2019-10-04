@@ -99,7 +99,7 @@ class DisplayPinViewController: UIViewController {
 		
 		var components = URLComponents()
 		components.scheme = "https"
-		components.host = "plonter.page.link"
+		components.host = "plonterapp.page.link"
 		components.path = "/parties"
 		
 		let partyQueryItem = URLQueryItem(name: "party", value: partyID)
@@ -109,7 +109,7 @@ class DisplayPinViewController: UIViewController {
 		print(linkParamater.absoluteString)
 		
 		
-		let shareLink = DynamicLinkComponents.init(link: linkParamater, domainURIPrefix: "https://plonter.page.link")
+		let shareLink = DynamicLinkComponents.init(link: linkParamater, domainURIPrefix: "https://plonterapp.page.link")
 		
 		if let bundleID = Bundle.main.bundleIdentifier {
 			shareLink?.iOSParameters = DynamicLinkIOSParameters(bundleID: bundleID)

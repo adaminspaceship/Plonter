@@ -61,7 +61,7 @@
         <!--Party View Controller-->
         <scene sceneID="RmI-eI-lWc">
             <objects>
-                <viewController id="Kyc-aT-yOG" customClass="PartyViewController" customModule="Plonter" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PartyViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Kyc-aT-yOG" customClass="PartyViewController" customModule="Plonter" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="RCj-bH-a77">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
