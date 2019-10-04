@@ -23,11 +23,18 @@ class InputPinViewController: UIViewController, PinCodeTextFieldDelegate {
 		pinCodeField.delegate = self
 		pinCodeField.keyboardType = .numberPad
 		pinCodeField.becomeFirstResponder()
+		//Looks for single or multiple taps.
+		let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+		view.addGestureRecognizer(tap)
     }
 	
 	// add member to party
 
 	func textFieldDidEndEditing(_ textField: PinCodeTextField) {
+		shouldJoinParty(textField)
+	}
+	
+	func shouldJoinParty(_ textField: PinCodeTextField) {
 		activityIndicator.startAnimating()
 		let pinCode = textField.text ?? ""
 		let partyRef = Database.database().reference().child("Parties")
@@ -35,22 +42,28 @@ class InputPinViewController: UIViewController, PinCodeTextFieldDelegate {
 		let user_id = UserDefaults.standard.string(forKey: "user_id")
 		ref.observeSingleEvent(of: .value) { (snapshot) in
 			let postDict = snapshot.value as? [String : AnyObject] ?? [:]
-			for item in postDict.keys {
-				self.partyID = item
-				let members = JSON(postDict[item])["members"]
-				let randomColor = Colors.randomizeHexColor()
-				if members[randomColor].stringValue != "" {
-					// change color first
-					let newRandomColor = Colors.randomizeHexColor()
-					partyRef.child(item).child("members").child(newRandomColor).setValue(user_id!)
-					self.myColor = newRandomColor
-				} else {
-					// create the user with this color
-					partyRef.child(item).child("members").child(randomColor).setValue(user_id!)
-					self.myColor = randomColor
-				}
+			if postDict.isEmpty {
+				// party doesn't exist
 				self.activityIndicator.stopAnimating()
-				self.performSegue(withIdentifier: "toParty", sender: self)
+			} else {
+				// party exists
+				for item in postDict.keys {
+					self.partyID = item
+					let members = JSON(postDict[item])["members"]
+					let randomColor = Colors.randomizeHexColor()
+					if members[randomColor].stringValue != "" {
+						// change color first
+						let newRandomColor = Colors.randomizeHexColor()
+						partyRef.child(item).child("members").child(newRandomColor).setValue(user_id!)
+						self.myColor = newRandomColor
+					} else {
+						// create the user with this color
+						partyRef.child(item).child("members").child(randomColor).setValue(user_id!)
+						self.myColor = randomColor
+					}
+					self.activityIndicator.stopAnimating()
+					self.performSegue(withIdentifier: "toParty", sender: self)
+				}
 			}
 			
 		}
@@ -70,5 +83,11 @@ class InputPinViewController: UIViewController, PinCodeTextFieldDelegate {
 		partyViewController?.isCreator = false
     }
     
+	
+	//Calls this function when the tap is recognized.
+	@objc func dismissKeyboard() {
+		//Causes the view (or one of its embedded text fields) to resign the first responder status.
+		view.endEditing(true)
+	}
 
 }

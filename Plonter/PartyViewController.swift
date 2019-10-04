@@ -140,7 +140,13 @@ class PartyViewController: UIViewController {
 	
 	func checkIfWinner(_ winnerHEX: String) {
 		
-		
+		// hiding
+		for bubble in self.bubbles {
+			bubble.removeFromSuperview()
+		}
+		self.secondsLeft.isHidden = true
+		self.myColorView.isHidden = true
+		self.myColorLabel.isHidden = true
 		let fillScreenView = UIView(frame: CGRect(x: self.view.center.x, y: self.view.center.y, width: 1, height: 1))
 		fillScreenView.backgroundColor = UIColor(hexString: winnerHEX)
 		fillScreenView.tintColor = UIColor(hexString: winnerHEX)

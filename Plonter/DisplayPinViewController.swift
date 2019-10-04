@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseDatabase
+import FirebaseDynamicLinks
 
 class DisplayPinViewController: UIViewController {
 	
@@ -41,9 +42,10 @@ class DisplayPinViewController: UIViewController {
     }
     
 	@IBAction func didPressSharePin(_ sender: Any) {
-		let items = ["This app is my favorite"]
-		let ac = UIActivityViewController(activityItems: items, applicationActivities: nil)
-		present(ac, animated: true)
+//		let items = ["This app is my favorite"]
+//		let ac = UIActivityViewController(activityItems: items, applicationActivities: nil)
+//		present(ac, animated: true)
+		createURL()
 	}
 	
 	@IBAction func didPressDone(_ sender: Any) {
@@ -91,7 +93,49 @@ class DisplayPinViewController: UIViewController {
 		partyViewController?.isCreator = true
 		partyViewController?.myColor = myColor
     }
-    
+
+	
+	func createURL() {
+		
+		var components = URLComponents()
+		components.scheme = "https"
+		components.host = "plonter.page.link"
+		components.path = "/parties"
+		
+		let partyQueryItem = URLQueryItem(name: "party", value: partyID)
+		components.queryItems = [partyQueryItem]
+		
+		guard let linkParamater = components.url else { return }
+		print(linkParamater.absoluteString)
+		
+		
+		let shareLink = DynamicLinkComponents.init(link: linkParamater, domainURIPrefix: "https://plonter.page.link")
+		
+		if let bundleID = Bundle.main.bundleIdentifier {
+			shareLink?.iOSParameters = DynamicLinkIOSParameters(bundleID: bundleID)
+		}
+		shareLink?.iOSParameters?.appStoreID = "962194608" // change to my bundleid
+		shareLink?.socialMetaTagParameters = DynamicLinkSocialMetaTagParameters()
+		shareLink?.socialMetaTagParameters?.title = "Join my party in Plonter!"
+		
+		guard let longURL = shareLink?.url else { return }
+		print(longURL)
+		
+		shareLink?.shorten(completion: { (url, warnings, error) in
+			if let error = error {
+				print("got an error: \(error)")
+			}
+			if let warnings = warnings {
+				for warning in warnings {
+					print("warning: \(warning)")
+				}
+			}
+			
+			guard let url = url else { return }
+			print("short url: \(url)")
+		})
+		
+	}
 
 }
 
