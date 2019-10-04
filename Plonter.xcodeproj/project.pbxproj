@@ -10,7 +10,7 @@
 		2444FFCBA686C85477341EC5 /* Pods_PlonterTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C7F7C152D87FD1D2D443FDA /* Pods_PlonterTests.framework */; };
 		799464D5D4353F960A04572D /* Pods_PlonterUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23C06057DBF1D17C2B8CA7E4 /* Pods_PlonterUITests.framework */; };
 		994C0A3C2345DFAB00473FD8 /* DisplayPinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 994C0A3B2345DFAB00473FD8 /* DisplayPinViewController.swift */; };
-		994C0A3E2345DFF600473FD8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 994C0A3D2345DFF600473FD8 /* GoogleService-Info.plist */; };
+		99A4ABC7234775C30066612C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 99A4ABC6234775C30066612C /* GoogleService-Info.plist */; };
 		99BAADAD2345587100E4D978 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99BAADAC2345587100E4D978 /* AppDelegate.swift */; };
 		99BAADAF2345587100E4D978 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99BAADAE2345587100E4D978 /* SceneDelegate.swift */; };
 		99BAADB12345587100E4D978 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99BAADB02345587100E4D978 /* ViewController.swift */; };
@@ -54,7 +54,8 @@
 		85DFEA139D42780B9A9425B5 /* Pods-Plonter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Plonter.release.xcconfig"; path = "Target Support Files/Pods-Plonter/Pods-Plonter.release.xcconfig"; sourceTree = "<group>"; };
 		933F47EFF81A590B73440241 /* Pods-Plonter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Plonter.debug.xcconfig"; path = "Target Support Files/Pods-Plonter/Pods-Plonter.debug.xcconfig"; sourceTree = "<group>"; };
 		994C0A3B2345DFAB00473FD8 /* DisplayPinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayPinViewController.swift; sourceTree = "<group>"; };
-		994C0A3D2345DFF600473FD8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		994C7B3323477B5500FA62B5 /* Plonter.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Plonter.entitlements; sourceTree = "<group>"; };
+		99A4ABC6234775C30066612C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		99BAADA92345587100E4D978 /* Plonter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Plonter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		99BAADAC2345587100E4D978 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		99BAADAE2345587100E4D978 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -130,6 +131,7 @@
 		99BAADAB2345587100E4D978 /* Plonter */ = {
 			isa = PBXGroup;
 			children = (
+				994C7B3323477B5500FA62B5 /* Plonter.entitlements */,
 				99BAADAC2345587100E4D978 /* AppDelegate.swift */,
 				99BAADAE2345587100E4D978 /* SceneDelegate.swift */,
 				99BAADB02345587100E4D978 /* ViewController.swift */,
@@ -143,7 +145,7 @@
 				99BAADB82345587300E4D978 /* Assets.xcassets */,
 				99BAADBA2345587300E4D978 /* LaunchScreen.storyboard */,
 				99BAADBD2345587300E4D978 /* Info.plist */,
-				994C0A3D2345DFF600473FD8 /* GoogleService-Info.plist */,
+				99A4ABC6234775C30066612C /* GoogleService-Info.plist */,
 			);
 			path = Plonter;
 			sourceTree = "<group>";
@@ -298,7 +300,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				99BAADBC2345587300E4D978 /* LaunchScreen.storyboard in Resources */,
-				994C0A3E2345DFF600473FD8 /* GoogleService-Info.plist in Resources */,
+				99A4ABC7234775C30066612C /* GoogleService-Info.plist in Resources */,
 				99BAADB92345587300E4D978 /* Assets.xcassets in Resources */,
 				99BAADB42345587100E4D978 /* Main.storyboard in Resources */,
 			);
@@ -593,6 +595,7 @@
 			baseConfigurationReference = 933F47EFF81A590B73440241 /* Pods-Plonter.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Plonter/Plonter.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Z28CSUK723;
 				INFOPLIST_FILE = Plonter/Info.plist;
@@ -612,6 +615,7 @@
 			baseConfigurationReference = 85DFEA139D42780B9A9425B5 /* Pods-Plonter.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Plonter/Plonter.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Z28CSUK723;
 				INFOPLIST_FILE = Plonter/Info.plist;

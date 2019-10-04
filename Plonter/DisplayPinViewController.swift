@@ -114,7 +114,7 @@ class DisplayPinViewController: UIViewController {
 		if let bundleID = Bundle.main.bundleIdentifier {
 			shareLink?.iOSParameters = DynamicLinkIOSParameters(bundleID: bundleID)
 		}
-		shareLink?.iOSParameters?.appStoreID = "962194608" // change to my bundleid
+		shareLink?.iOSParameters?.appStoreID = "1482395143" // change to my bundleid
 		shareLink?.socialMetaTagParameters = DynamicLinkSocialMetaTagParameters()
 		shareLink?.socialMetaTagParameters?.title = "Join my party in Plonter!"
 		
