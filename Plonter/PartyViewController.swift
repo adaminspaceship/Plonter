@@ -9,6 +9,7 @@
 import UIKit
 import FirebaseDatabase
 import SwiftyJSON
+import SAConfettiView
 
 
 class PartyViewController: UIViewController {
@@ -139,13 +140,7 @@ class PartyViewController: UIViewController {
 	
 	func checkIfWinner(_ winnerHEX: String) {
 		
-		// hiding
-		for bubble in self.bubbles {
-			bubble.removeFromSuperview()
-		}
-		self.secondsLeft.isHidden = true
-		self.myColorView.isHidden = true
-		self.myColorLabel.isHidden = true
+		
 		let fillScreenView = UIView(frame: CGRect(x: self.view.center.x, y: self.view.center.y, width: 1, height: 1))
 		fillScreenView.backgroundColor = UIColor(hexString: winnerHEX)
 		fillScreenView.tintColor = UIColor(hexString: winnerHEX)
@@ -162,12 +157,18 @@ class PartyViewController: UIViewController {
 			fillScreenView.transform = CGAffineTransform(scaleX: 1000, y: 1000)
 			self.view.addSubview(label)
 		})
+		
 		// add sound
 		if myColor == winnerHEX {
 			// you win
 			print("you won!")
 			label.text = "You Won ⭐️"
 			label.textColor = self.view.backgroundColor?.isDarkColor == true ? .white : .black
+			// adding confetti
+			let confettiView = SAConfettiView(frame: self.view.bounds)
+			self.view.addSubview(confettiView)
+			label.sendSubviewToBack(confettiView)
+			confettiView.startConfetti()
 		} else {
 			// you lose
 			print("you lost!")
