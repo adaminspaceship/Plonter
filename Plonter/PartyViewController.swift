@@ -23,7 +23,6 @@ class PartyViewController: UIViewController {
 	@IBOutlet weak var myColorLabel: UILabel!
 	var memberArray = [String]()
 	var bubbles = [UIView]()
-	
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -32,12 +31,16 @@ class PartyViewController: UIViewController {
 		myColorView.tintColor = UIColor(hexString: myColor)
 //		myColorView.
 		myColorLabel.textColor = myColorView.backgroundColor?.isDarkColor == true ? .white : .black
-		
+		UIApplication.shared.isIdleTimerDisabled = true
+		let ref = Database.database().reference().child("Parties").child(partyID)
+		ref.child("pin").observeSingleEvent(of: .value) { (snapshot) in
+			let partyPin = snapshot.value as? String
+			self.myColorLabel.text = "Party Pin: \(partyPin ?? "N/A")"
+		}
     }
 	
 	func getParty() {
 		let ref = Database.database().reference().child("Parties").child(partyID)
-		var secondsToJoinPicked = Int()
 		ref.child("members").observe(.value) { (snapshot) in
 			let members = JSON(snapshot.value!)
 			
@@ -63,24 +66,27 @@ class PartyViewController: UIViewController {
 				latestMemberXCoordinates+=200
 				
 			}
-		}
-		
-		// create timer if creator - maybe change so user picks time
-		if self.isCreator {
-			ref.child("secondsToJoin").observeSingleEvent(of: .value) { (snapshot) in
-				let endTime = Int(Date().timeIntervalSince1970)+Int(snapshot.value as! String)! // change depending on user
-				self.startTimer(endTime)
+			if members.count >= 2 {
+				if self.isCreator {
+					ref.child("secondsToJoin").observeSingleEvent(of: .value) { (snapshot) in
+						let secondsToJoinPicked = Int(snapshot.value as! String)!
+						self.startTimer(secondsToJoinPicked)
+					}
+				} else {
+					self.startClientTimer()
+				}
+			} else {
+				self.secondsLeft.text = "Waiting for one more"
 			}
-		} else {
-			self.startClientTimer()
 		}
 		
 	}
 	
-	func startTimer(_ endTime: Int) {
+	func startTimer(_ secondsToJoinPicked: Int) {
+		let endTime = Int(Date().timeIntervalSince1970)+secondsToJoinPicked
 		let ref = Database.database().reference().child("Parties").child(partyID)
 		ref.child("endTime").setValue(String(endTime))
-		timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
+		timer = Timer.scheduledTimer(timeInterval: 0.3, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
 		self.endTime = endTime
 		
 	}
@@ -101,17 +107,11 @@ class PartyViewController: UIViewController {
 			if snapshot.exists() {
 				let endTime = snapshot.value as? String
 				self.endTime = Int(endTime!)!
-				self.timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.updateClientTimer), userInfo: nil, repeats: true)
+				self.timer = Timer.scheduledTimer(timeInterval: 0.3, target: self, selector: #selector(self.updateTimer), userInfo: nil, repeats: true)
 			}
 		}
 		
 	}
-	@objc func updateClientTimer(_ sender: Timer) {
-		let secondsRemaining = self.endTime-Int(Date().timeIntervalSince1970)
-		self.secondsLeft.text = "\(secondsRemaining) seconds left to join"
-		if secondsRemaining == 0 { self.animatebubbles() }
-	}
-	
 	func animatebubbles() {
 		timer?.invalidate()
 		secondsLeft.isHidden = true
