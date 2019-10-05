@@ -22,6 +22,16 @@ class ViewController: UIViewController {
 			self.hiNameLabel.text = "Hi, \(user_name)!"
 		}
 	}
+	
+	@IBAction func createPartyTapped(_ sender: Any) {
+		Utilities.vibratePhone(.Pop)
+	}
+	
+	@IBAction func joinPartyTapped(_ sender: Any) {
+		Utilities.vibratePhone(.Pop)
+	}
+	
+	
 	override func viewDidAppear(_ animated: Bool) {
 		if Utilities.firstLaunch() {
 			let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -35,6 +45,8 @@ class ViewController: UIViewController {
 			self.present(userCreateViewController, animated: true, completion: nil)
 		}
 	}
+	
+	
 	
 	
 	

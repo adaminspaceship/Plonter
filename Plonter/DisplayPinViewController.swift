@@ -135,6 +135,7 @@ class DisplayPinViewController: UIViewController {
 			print("short url: \(url)")
 			let items = ["Join my party at Plonter!",url] as [Any]
 			let ac = UIActivityViewController(activityItems: items, applicationActivities: nil)
+			Utilities.vibratePhone(.Peek)
 			self.present(ac, animated: true)
 		})
 		

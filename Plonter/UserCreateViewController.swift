@@ -24,7 +24,7 @@ class UserCreateViewController: UIViewController {
     }
     
 	@IBOutlet weak var firstNameTextField: UITextField!
-	
+
 	
 	@IBAction func primaryActionTrigger(_ sender: Any) {
 		if firstNameTextField.text != "" {

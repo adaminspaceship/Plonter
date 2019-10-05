@@ -32,6 +32,7 @@ class PartyViewController: UIViewController {
 		myColorView.tintColor = UIColor(hexString: myColor)
 //		myColorView.
 		myColorLabel.textColor = myColorView.backgroundColor?.isDarkColor == true ? .white : .black
+		
     }
 	
 	func getParty() {
@@ -96,12 +97,14 @@ class PartyViewController: UIViewController {
 //	let retrievedEndTime = Date(timeIntervalSince1970: Double(endTime))
 	func startClientTimer() {
 		let ref = Database.database().reference().child("Parties").child(partyID)
-		ref.child("endTime").observeSingleEvent(of: .value) { (snapshot) in
-			let endTime = snapshot.value as! String
-			self.endTime = Int(endTime)!
-			
+		ref.child("endTime").observe(.value) { (snapshot) in
+			if snapshot.exists() {
+				let endTime = snapshot.value as? String
+				self.endTime = Int(endTime!)!
+				self.timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.updateClientTimer), userInfo: nil, repeats: true)
+			}
 		}
-		timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateClientTimer), userInfo: nil, repeats: true)
+		
 	}
 	@objc func updateClientTimer(_ sender: Timer) {
 		let secondsRemaining = self.endTime-Int(Date().timeIntervalSince1970)

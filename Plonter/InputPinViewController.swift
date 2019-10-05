@@ -66,6 +66,7 @@ class InputPinViewController: UIViewController, PinCodeTextFieldDelegate {
 						self.myColor = randomColor
 					}
 					self.activityIndicator.stopAnimating()
+					Utilities.vibratePhone(.Peek)
 					self.performSegue(withIdentifier: "toParty", sender: self)
 				}
 			}

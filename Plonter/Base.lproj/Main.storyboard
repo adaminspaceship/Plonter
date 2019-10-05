@@ -67,7 +67,7 @@
             </objects>
             <point key="canvasLocation" x="136.80000000000001" y="-647.29064039408865"/>
         </scene>
-        <!--Pin-->
+        <!--Join-->
         <scene sceneID="ilr-GI-u78">
             <objects>
                 <viewController id="3NS-h0-Iej" customClass="InputPinViewController" customModule="Plonter" customModuleProvider="target" sceneMemberID="viewController">
@@ -75,16 +75,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Input your pin" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lhz-6K-82G">
-                                <rect key="frame" x="53" y="98" width="269" height="54"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="45"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kBC-X6-hpv" customClass="PinCodeTextField" customModule="PinCodeTextField">
-                                <rect key="frame" x="53" y="208" width="269" height="90"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kBC-X6-hpv" customClass="PinCodeTextField" customModule="PinCodeTextField">
+                                <rect key="frame" x="53" y="164" width="269" height="85"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="textColor">
@@ -98,15 +90,33 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="Uez-vs-Vrn">
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="Uez-vs-Vrn">
                                 <rect key="frame" x="177" y="396" width="20" height="20"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </activityIndicatorView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Input party pin" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lhz-6K-82G">
+                                <rect key="frame" x="45" y="93" width="284" height="54"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="45"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Uez-vs-Vrn" firstAttribute="leading" secondItem="CQ0-zN-mAa" secondAttribute="leading" constant="177" id="7iL-p1-fon"/>
+                            <constraint firstItem="CQ0-zN-mAa" firstAttribute="bottom" secondItem="Uez-vs-Vrn" secondAttribute="bottom" constant="313" id="A3q-4v-1ZA"/>
+                            <constraint firstItem="Uez-vs-Vrn" firstAttribute="centerY" secondItem="JWw-73-O6V" secondAttribute="centerY" id="MpD-jg-HrR"/>
+                            <constraint firstItem="Lhz-6K-82G" firstAttribute="centerX" secondItem="JWw-73-O6V" secondAttribute="centerX" id="PpA-z7-Jxh"/>
+                            <constraint firstItem="Uez-vs-Vrn" firstAttribute="top" secondItem="kBC-X6-hpv" secondAttribute="bottom" constant="98" id="TJM-rk-akc"/>
+                            <constraint firstItem="kBC-X6-hpv" firstAttribute="top" secondItem="Lhz-6K-82G" secondAttribute="bottom" constant="61" id="V6o-Of-wXK"/>
+                            <constraint firstItem="kBC-X6-hpv" firstAttribute="centerX" secondItem="Uez-vs-Vrn" secondAttribute="centerX" id="VGi-6w-Me6"/>
+                            <constraint firstItem="Lhz-6K-82G" firstAttribute="top" secondItem="CQ0-zN-mAa" secondAttribute="top" constant="49" id="afO-P4-GSQ"/>
+                            <constraint firstItem="Lhz-6K-82G" firstAttribute="centerX" secondItem="kBC-X6-hpv" secondAttribute="centerX" id="od0-GQ-dp6"/>
+                            <constraint firstItem="kBC-X6-hpv" firstAttribute="leading" secondItem="CQ0-zN-mAa" secondAttribute="leading" constant="53" id="xMQ-Ko-yIu"/>
+                            <constraint firstItem="Lhz-6K-82G" firstAttribute="leading" secondItem="CQ0-zN-mAa" secondAttribute="leading" constant="45" id="zca-c4-3RA"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="CQ0-zN-mAa"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Pin" image="plus_square" id="oAU-FD-LDE"/>
+                    <tabBarItem key="tabBarItem" title="Join" image="plus_square" id="oAU-FD-LDE"/>
                     <navigationItem key="navigationItem" id="ABo-Hj-seF"/>
                     <connections>
                         <outlet property="activityIndicator" destination="Uez-vs-Vrn" id="wOX-x4-2P3"/>
@@ -220,6 +230,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
+                                    <action selector="createPartyTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="RaW-MP-rKA"/>
                                     <segue destination="jw3-xI-UII" kind="show" id="wR8-Rl-l5V"/>
                                 </connections>
                             </button>
@@ -245,6 +256,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
+                                    <action selector="joinPartyTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="SQ3-UD-dFX"/>
                                     <segue destination="3NS-h0-Iej" kind="show" id="a2C-d2-Tgp"/>
                                 </connections>
                             </button>
