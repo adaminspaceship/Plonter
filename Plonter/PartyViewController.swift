@@ -115,22 +115,26 @@ class PartyViewController: UIViewController {
 		if isCreator {
 			let ref = Database.database().reference().child("Parties").child(partyID)
 			ref.child("members").observeSingleEvent(of: .value) { (snapshot) in
-				var members = [String]()
+				var members = [String:String]()
 				for item in snapshot.children {
-					members.append((item as AnyObject).key)
+					let newItem = item as! DataSnapshot
+					let memberHex = String(newItem.key)
+					let memberName = newItem.value
+					members[memberHex] = memberName as? String
 				}
 				let winner = members.randomElement()!
-				ref.child("winner").setValue(winner)
-				self.checkIfWinner(winner)
+				ref.child("winner").setValue(winner.key)
+				self.checkIfWinner(winnerHEX: winner.key, winnerName: winner.value)
 			}
 		} else {
 			let ref = Database.database().reference().child("Parties").child(partyID)
-			ref.child("winner").observe(.value) { (snapshot) in
-				if let winner = snapshot.value! as? String {
-					print(winner)
-					self.view.backgroundColor = UIColor(hexString: winner)
-					self.checkIfWinner(winner)
-				}
+			ref.observe(.value) { (snapshot) in
+				let json = JSON(snapshot.value!)
+				let winnerHEX = json["winner"].stringValue
+				let winnerName = json["members"][winnerHEX].stringValue
+				self.view.backgroundColor = UIColor(hexString: winnerHEX)
+				self.checkIfWinner(winnerHEX: winnerHEX, winnerName: winnerName)
+				
 			}
 		}
 		
@@ -138,7 +142,7 @@ class PartyViewController: UIViewController {
 	
 	
 	
-	func checkIfWinner(_ winnerHEX: String) {
+	func checkIfWinner(winnerHEX: String, winnerName: String) {
 		
 		// hiding
 		for bubble in self.bubbles {
@@ -157,7 +161,7 @@ class PartyViewController: UIViewController {
 		let label = UILabel(frame: CGRect(x: 0, y: self.view.center.y, width: 300, height: 85))
 		label.center = CGPoint(x: self.view.frame.width/2, y: self.view.frame.height/2)
 		label.textAlignment = .center
-		label.font = UIFont.systemFont(ofSize: 55, weight: .semibold)
+		label.font = UIFont.systemFont(ofSize: 35, weight: .semibold)
 		//animate background
 		UIView.animate(withDuration: 2, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.8, options: .curveEaseInOut, animations:  {
 			fillScreenView.transform = CGAffineTransform(scaleX: 1000, y: 1000)
@@ -178,7 +182,7 @@ class PartyViewController: UIViewController {
 		} else {
 			// you lose
 			print("you lost!")
-			label.text = "You Lost ☹️"
+			label.text = "\(winnerName) Won ☹️"
 			label.textColor = self.view.backgroundColor?.isDarkColor == true ? .white : .black
 		}
 	}

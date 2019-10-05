@@ -94,7 +94,7 @@ class DisplayPinViewController: UIViewController {
 
 	
 	func createURL() {
-		
+		activityIndicator.startAnimating()
 		var components = URLComponents()
 		components.scheme = "https"
 		components.host = "plonterapp.page.link"
@@ -120,6 +120,8 @@ class DisplayPinViewController: UIViewController {
 		print(longURL)
 		
 		shareLink?.shorten(completion: { (url, warnings, error) in
+			// finished shortening url
+			self.activityIndicator.stopAnimating()
 			if let error = error {
 				print("got an error: \(error)")
 			}
