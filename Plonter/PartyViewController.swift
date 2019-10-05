@@ -23,7 +23,8 @@ class PartyViewController: UIViewController {
 	@IBOutlet weak var myColorLabel: UILabel!
 	var memberArray = [String]()
 	var bubbles = [UIView]()
-    override func viewDidLoad() {
+	@IBOutlet weak var joinedThePartyLabel: UILabel!
+	override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
 		getParty()
@@ -40,32 +41,34 @@ class PartyViewController: UIViewController {
     }
 	
 	func getParty() {
+		var latestMemberXCoordinates = self.view.frame.width/4
+		var latestMemberYCoordinates = 213
 		let ref = Database.database().reference().child("Parties").child(partyID)
-		ref.child("members").observe(.value) { (snapshot) in
-			let members = JSON(snapshot.value!)
-			
-			var latestMemberXCoordinates = self.view.frame.width/4
-			var latestMemberYCoordinates = 213
-			for member in members {
-				if latestMemberXCoordinates > self.view.frame.width { latestMemberXCoordinates = self.view.frame.width/4 ; latestMemberYCoordinates+=125 }
-				let bubble = UIView(frame: CGRect(x: Int(latestMemberXCoordinates), y: latestMemberYCoordinates, width: 1, height: 1))
-//				self.memberArray.append(member.0)
-//				print(self.memberArray)
-				//customise bubble
-				let userColor = UIColor(hexString: "#\(member.0)")
-				bubble.backgroundColor = userColor
-				bubble.tintColor = userColor
-				bubble.layer.cornerRadius = bubble.frame.size.width/2
-				bubble.clipsToBounds = true
-				//add bubble to subview
-				self.view.addSubview(bubble)
-				self.bubbles.append(bubble)
-				UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: [], animations:  {
-					bubble.transform = CGAffineTransform(scaleX: 85, y: 85)
-				})
-				latestMemberXCoordinates+=200
-				
+		ref.child("members").observe(.childAdded) { (snapshot) in
+			let memberHEX = JSON(snapshot.key).stringValue
+			if latestMemberXCoordinates > self.view.frame.width { latestMemberXCoordinates = self.view.frame.width/4 ; latestMemberYCoordinates+=125 }
+			let bubble = UIView(frame: CGRect(x: Int(latestMemberXCoordinates), y: latestMemberYCoordinates, width: 1, height: 1))
+			let userColor = UIColor(hexString: "#\(memberHEX)")
+			bubble.backgroundColor = userColor
+			bubble.tintColor = userColor
+			bubble.layer.cornerRadius = bubble.frame.size.width/2
+			bubble.clipsToBounds = true
+			//add bubble to subview
+			self.view.addSubview(bubble)
+			self.bubbles.append(bubble)
+			UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: [], animations:  {
+				bubble.transform = CGAffineTransform(scaleX: 85, y: 85)
+			})
+			self.joinedThePartyLabel.text = "\(JSON(snapshot.value!).stringValue) joined the party!"
+			self.joinedThePartyLabel.alpha = 0
+			UIView.animate(withDuration: 1, delay: 0, options: .curveEaseIn, animations: {
+				self.joinedThePartyLabel.alpha = 1.0
+			}) { (yes) in
+				UIView.animate(withDuration: 1, delay: 0, options: .curveEaseOut, animations: {
+					self.joinedThePartyLabel.alpha = 0
+				}, completion: nil)
 			}
+			latestMemberXCoordinates+=200
 		}
 		
 		if self.isCreator {

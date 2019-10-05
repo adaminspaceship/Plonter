@@ -63,6 +63,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 		// Save changes in the application's managed object context when the application transitions to the background.
 	}
+	
+
 	func scene(_ scene: UIScene, continue userActivity: NSUserActivity) {
 		if let incomingURL = userActivity.webpageURL {
 			print("incoming URL is \(incomingURL)")

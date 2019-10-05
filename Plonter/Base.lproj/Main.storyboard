@@ -187,6 +187,16 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tomer joined the party!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XKr-P8-ovK">
+                                <rect key="frame" x="46" y="641" width="283" height="62"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="283" id="XDe-yc-hCL"/>
+                                    <constraint firstAttribute="height" constant="62" id="XTy-np-LJ4"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="23"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -195,12 +205,15 @@
                             <constraint firstItem="rKv-B4-63d" firstAttribute="centerX" secondItem="BDo-fE-C43" secondAttribute="centerX" id="Rvj-9E-Mqz"/>
                             <constraint firstItem="rKv-B4-63d" firstAttribute="top" secondItem="U2H-JX-Qfd" secondAttribute="top" constant="24" id="UFA-Do-sML"/>
                             <constraint firstItem="rKv-B4-63d" firstAttribute="centerX" secondItem="RCj-bH-a77" secondAttribute="centerX" id="dQL-8C-uuY"/>
+                            <constraint firstItem="BDo-fE-C43" firstAttribute="top" secondItem="XKr-P8-ovK" secondAttribute="bottom" constant="8" id="fhD-W5-rw8"/>
                             <constraint firstItem="U2H-JX-Qfd" firstAttribute="bottom" secondItem="BDo-fE-C43" secondAttribute="bottom" constant="37" id="wfA-hU-c6o"/>
+                            <constraint firstItem="XKr-P8-ovK" firstAttribute="centerX" secondItem="RCj-bH-a77" secondAttribute="centerX" id="yyQ-ZO-q5x"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="U2H-JX-Qfd"/>
                     </view>
                     <navigationItem key="navigationItem" id="WfE-HU-4Ij"/>
                     <connections>
+                        <outlet property="joinedThePartyLabel" destination="XKr-P8-ovK" id="LLt-X2-2lv"/>
                         <outlet property="myColorLabel" destination="w2D-cE-H83" id="d9O-tD-ec3"/>
                         <outlet property="myColorView" destination="rKv-B4-63d" id="FVG-va-0wH"/>
                         <outlet property="secondsLeft" destination="BDo-fE-C43" id="afF-kn-ZFd"/>
