@@ -66,24 +66,22 @@ class PartyViewController: UIViewController {
 				latestMemberXCoordinates+=200
 				
 			}
-			if members.count >= 2 {
-				if self.isCreator {
-					ref.child("secondsToJoin").observeSingleEvent(of: .value) { (snapshot) in
-						let secondsToJoinPicked = Int(snapshot.value as! String)!
-						self.startTimer(secondsToJoinPicked)
-					}
-				} else {
-					self.startClientTimer()
-				}
-			} else {
-				self.secondsLeft.text = "Waiting for one more"
-			}
 		}
+		
+		if self.isCreator {
+			ref.child("secondsToJoin").observeSingleEvent(of: .value) { (snapshot) in
+				let endTime = Int(Date().timeIntervalSince1970)+Int(snapshot.value as! String)! // change depending on user
+				self.startTimer(endTime)
+			}
+		} else {
+			self.startClientTimer()
+		}
+		
+		
 		
 	}
 	
-	func startTimer(_ secondsToJoinPicked: Int) {
-		let endTime = Int(Date().timeIntervalSince1970)+secondsToJoinPicked
+	func startTimer(_ endTime: Int) {
 		let ref = Database.database().reference().child("Parties").child(partyID)
 		ref.child("endTime").setValue(String(endTime))
 		timer = Timer.scheduledTimer(timeInterval: 0.3, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
@@ -135,7 +133,6 @@ class PartyViewController: UIViewController {
 				let json = JSON(snapshot.value!)
 				let winnerHEX = json["winner"].stringValue
 				let winnerName = json["members"][winnerHEX].stringValue
-				self.view.backgroundColor = UIColor(hexString: winnerHEX)
 				self.checkIfWinner(winnerHEX: winnerHEX, winnerName: winnerName)
 				
 			}
