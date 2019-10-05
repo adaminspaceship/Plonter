@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		2444FFCBA686C85477341EC5 /* Pods_PlonterTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C7F7C152D87FD1D2D443FDA /* Pods_PlonterTests.framework */; };
 		799464D5D4353F960A04572D /* Pods_PlonterUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23C06057DBF1D17C2B8CA7E4 /* Pods_PlonterUITests.framework */; };
+		992BACB42348CC2000F5A04A /* UserCreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 992BACB32348CC2000F5A04A /* UserCreateViewController.swift */; };
+		992BACB62348CEE900F5A04A /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 992BACB52348CEE900F5A04A /* Utilities.swift */; };
 		994C0A3C2345DFAB00473FD8 /* DisplayPinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 994C0A3B2345DFAB00473FD8 /* DisplayPinViewController.swift */; };
 		99A4ABC7234775C30066612C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 99A4ABC6234775C30066612C /* GoogleService-Info.plist */; };
 		99BAADAD2345587100E4D978 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99BAADAC2345587100E4D978 /* AppDelegate.swift */; };
@@ -53,6 +55,8 @@
 		7C7F7C152D87FD1D2D443FDA /* Pods_PlonterTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PlonterTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		85DFEA139D42780B9A9425B5 /* Pods-Plonter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Plonter.release.xcconfig"; path = "Target Support Files/Pods-Plonter/Pods-Plonter.release.xcconfig"; sourceTree = "<group>"; };
 		933F47EFF81A590B73440241 /* Pods-Plonter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Plonter.debug.xcconfig"; path = "Target Support Files/Pods-Plonter/Pods-Plonter.debug.xcconfig"; sourceTree = "<group>"; };
+		992BACB32348CC2000F5A04A /* UserCreateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCreateViewController.swift; sourceTree = "<group>"; };
+		992BACB52348CEE900F5A04A /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		994C0A3B2345DFAB00473FD8 /* DisplayPinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayPinViewController.swift; sourceTree = "<group>"; };
 		994C7B3323477B5500FA62B5 /* Plonter.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Plonter.entitlements; sourceTree = "<group>"; };
 		99A4ABC6234775C30066612C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -134,6 +138,7 @@
 				994C7B3323477B5500FA62B5 /* Plonter.entitlements */,
 				99BAADAC2345587100E4D978 /* AppDelegate.swift */,
 				99BAADAE2345587100E4D978 /* SceneDelegate.swift */,
+				992BACB52348CEE900F5A04A /* Utilities.swift */,
 				99BAADB02345587100E4D978 /* ViewController.swift */,
 				99BAADE123455BC300E4D978 /* Colors.swift */,
 				99BAADDF23455B3A00E4D978 /* FriendTableViewCell.swift */,
@@ -141,6 +146,7 @@
 				99F6EC412346565700747E82 /* InputPinViewController.swift */,
 				99F6EC432346631300747E82 /* PartyViewController.swift */,
 				99BAADB22345587100E4D978 /* Main.storyboard */,
+				992BACB32348CC2000F5A04A /* UserCreateViewController.swift */,
 				99F6EC452346699300747E82 /* UIView+IBDesignables.swift */,
 				99BAADB82345587300E4D978 /* Assets.xcassets */,
 				99BAADBA2345587300E4D978 /* LaunchScreen.storyboard */,
@@ -414,6 +420,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				99BAADE223455BC300E4D978 /* Colors.swift in Sources */,
+				992BACB42348CC2000F5A04A /* UserCreateViewController.swift in Sources */,
+				992BACB62348CEE900F5A04A /* Utilities.swift in Sources */,
 				99F6EC462346699300747E82 /* UIView+IBDesignables.swift in Sources */,
 				99BAADB12345587100E4D978 /* ViewController.swift in Sources */,
 				99BAADE023455B3A00E4D978 /* FriendTableViewCell.swift in Sources */,

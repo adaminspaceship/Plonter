@@ -39,12 +39,10 @@ class DisplayPinViewController: UIViewController {
 		createNewParty()
 		secondsStepper.minimumValue = 1
 		secondsStepper.maximumValue = 6
+		secondsStepper.value = 3
     }
     
 	@IBAction func didPressSharePin(_ sender: Any) {
-//		let items = ["This app is my favorite"]
-//		let ac = UIActivityViewController(activityItems: items, applicationActivities: nil)
-//		present(ac, animated: true)
 		createURL()
 	}
 	
@@ -61,7 +59,7 @@ class DisplayPinViewController: UIViewController {
 	func createNewParty() {
 		let newPartyRef = Database.database().reference().child("Parties").childByAutoId()
 		let partyPin = fourUniqueDigits
-		let user_id = UserDefaults.standard.string(forKey: "user_id")
+		let user_id = UserDefaults.standard.string(forKey: "user_name")
 		partyID = newPartyRef.key!
 		myColor = Colors.randomizeHexColor()
 		
@@ -117,7 +115,7 @@ class DisplayPinViewController: UIViewController {
 		shareLink?.iOSParameters?.appStoreID = "1482395143" // change to my bundleid
 		shareLink?.socialMetaTagParameters = DynamicLinkSocialMetaTagParameters()
 		shareLink?.socialMetaTagParameters?.title = "Join my party in Plonter!"
-		
+		shareLink?.socialMetaTagParameters?.imageURL = URL(string: "https://firebasestorage.googleapis.com/v0/b/plonter-c4edb.appspot.com/o/Icon.png?alt=media&token=f68c5816-688d-4ccd-9fc3-cad6992e40c0")
 		guard let longURL = shareLink?.url else { return }
 		print(longURL)
 		
@@ -133,6 +131,9 @@ class DisplayPinViewController: UIViewController {
 			
 			guard let url = url else { return }
 			print("short url: \(url)")
+			let items = ["Join my party at Plonter!",url] as [Any]
+			let ac = UIActivityViewController(activityItems: items, applicationActivities: nil)
+			self.present(ac, animated: true)
 		})
 		
 	}

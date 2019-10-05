@@ -11,24 +11,32 @@ import FirebaseDatabase
 
 class ViewController: UIViewController {
 	
+	@IBOutlet weak var hiNameLabel: UILabel!
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		let defaults = UserDefaults.standard
-		if firstLaunch() { defaults.set(UUID().uuidString, forKey: "user_id") }
+		
 		// Do any additional setup after loading the view.
-	}
-	
-	func firstLaunch()->Bool{
-		let defaults = UserDefaults.standard
-		if let _ = defaults.string(forKey: "isAppAlreadyLaunchedOnce"){
-			print("App already launched")
-			return false
-		} else {
-			defaults.set(true, forKey: "isAppAlreadyLaunchedOnce")
-			print("App launched first time")
-			return true
+		let userDefaults = UserDefaults.standard
+		if let user_name = userDefaults.string(forKey: "user_name") {
+			self.hiNameLabel.text = "Hi, \(user_name)!"
 		}
 	}
+	override func viewDidAppear(_ animated: Bool) {
+		if Utilities.firstLaunch() {
+			let storyboard = UIStoryboard(name: "Main", bundle: nil)
+			let userCreateViewController = storyboard.instantiateViewController(withIdentifier: "UserCreateViewController")
+			userCreateViewController.modalPresentationStyle = .formSheet
+			if #available(iOS 13.0, *) {
+				userCreateViewController.isModalInPresentation = true
+			} else {
+				// Fallback on earlier versions
+			}
+			self.present(userCreateViewController, animated: true, completion: nil)
+		}
+	}
+	
+	
 	
 }
 

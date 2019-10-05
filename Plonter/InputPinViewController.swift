@@ -31,7 +31,11 @@ class InputPinViewController: UIViewController, PinCodeTextFieldDelegate {
 	// add member to party
 
 	func textFieldDidEndEditing(_ textField: PinCodeTextField) {
-		shouldJoinParty(textField)
+		// check if textfield is blank
+		if textField.text != "" && textField.text != nil{
+			shouldJoinParty(textField)
+		}
+		
 	}
 	
 	func shouldJoinParty(_ textField: PinCodeTextField) {
@@ -39,7 +43,7 @@ class InputPinViewController: UIViewController, PinCodeTextFieldDelegate {
 		let pinCode = textField.text ?? ""
 		let partyRef = Database.database().reference().child("Parties")
 		let ref = partyRef.queryOrdered(byChild: "pin").queryEqual(toValue: pinCode)
-		let user_id = UserDefaults.standard.string(forKey: "user_id")
+		let user_id = UserDefaults.standard.string(forKey: "user_name")
 		ref.observeSingleEvent(of: .value) { (snapshot) in
 			let postDict = snapshot.value as? [String : AnyObject] ?? [:]
 			if postDict.isEmpty {

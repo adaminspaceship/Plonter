@@ -92,7 +92,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 			if let partyIDQueryItem = queryItems?.first(where: {$0.name == "party"}) {
 				guard let partyID = partyIDQueryItem.value else { return }
 				let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-				guard let partyViewController = storyboard.instantiateViewController(identifier: "PartyViewController") as? PartyViewController
+				guard let partyViewController = storyboard.instantiateViewController(withIdentifier: "PartyViewController") as? PartyViewController
 					else { return }
 				partyViewController.partyID = partyID
 				partyViewController.isCreator = false
@@ -108,7 +108,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 	func shouldJoinParty(_ partyID: String, completion: @escaping (String) -> ()) {
 		let partyRef = Database.database().reference().child("Parties")
 		let ref = partyRef.child(partyID)
-		let user_id = UserDefaults.standard.string(forKey: "user_id")
+		let user_id = UserDefaults.standard.string(forKey: "user_name")
 		
 		ref.observeSingleEvent(of: .value) { (snapshot) in
 			let postDict = snapshot.value as? [String : AnyObject] ?? [:]
