@@ -238,7 +238,7 @@
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R94-rv-F9n">
                                 <rect key="frame" x="27" y="290" width="321" height="66"/>
-                                <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="66" id="F6C-uc-vg1"/>
                                 </constraints>
@@ -264,7 +264,7 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cNY-Tu-zdn">
                                 <rect key="frame" x="27" y="437" width="321" height="66"/>
-                                <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="66" id="igB-5w-2Xy"/>
                                 </constraints>
@@ -338,7 +338,7 @@
                                 <rect key="frame" x="147" y="605" width="80" height="54"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="35"/>
                                 <state key="normal" title="Done">
-                                    <color key="titleColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleColor" systemColor="systemOrangeColor" red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="didPressDone:" destination="jw3-xI-UII" eventType="touchUpInside" id="Mc7-IY-fis"/>
@@ -401,7 +401,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lef-mO-d9F">
                                 <rect key="frame" x="298" y="268" width="24" height="24"/>
                                 <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="24" id="6dn-wg-If7"/>
                                     <constraint firstAttribute="height" constant="24" id="KLV-UD-97f"/>
+                                    <constraint firstAttribute="width" constant="24" id="eWF-il-5k7"/>
                                 </constraints>
                                 <state key="normal" image="share"/>
                                 <connections>
@@ -435,7 +437,6 @@
                             <constraint firstItem="wi3-qG-lZO" firstAttribute="bottom" secondItem="Sy1-ql-T5n" secondAttribute="bottom" constant="65" id="l6w-vq-KQV"/>
                             <constraint firstItem="hQM-2v-oat" firstAttribute="baseline" secondItem="deu-DE-OJ0" secondAttribute="baseline" id="lE9-mI-5rh"/>
                             <constraint firstItem="rNv-Zs-Aax" firstAttribute="top" secondItem="wi3-qG-lZO" secondAttribute="top" constant="177" id="ou3-aC-tZo"/>
-                            <constraint firstItem="wi3-qG-lZO" firstAttribute="trailing" secondItem="Lef-mO-d9F" secondAttribute="trailing" constant="53" id="tBK-Bp-DTA"/>
                             <constraint firstItem="hQM-2v-oat" firstAttribute="leading" secondItem="BEE-Uq-GIO" secondAttribute="trailing" constant="8" id="uad-gQ-qlq"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="wi3-qG-lZO"/>
@@ -469,7 +470,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="selectedImageTintColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="selectedImageTintColor" systemColor="systemOrangeColor" red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="z63-9l-Swn"/>
@@ -490,7 +491,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="F2i-VP-Pl3"/>
-        <segue reference="0xh-Fc-f0n"/>
+        <segue reference="RVP-qj-WXc"/>
         <segue reference="K9v-w7-AV5"/>
     </inferredMetricsTieBreakers>
 </document>
