@@ -57,7 +57,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="WXe-1Q-Aks"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Name" image="person_square" id="JXv-J8-r3e"/>
+                    <tabBarItem key="tabBarItem" title="Name" image="person_sqaure" id="JXv-J8-r3e">
+                        <inset key="imageInsets" minX="50" minY="50" maxX="50" maxY="50"/>
+                    </tabBarItem>
                     <connections>
                         <outlet property="firstNameTextField" destination="bMZ-x0-MZL" id="4Ee-ib-HSl"/>
                         <segue destination="soO-wj-uCS" kind="presentation" identifier="toTabBar" modalPresentationStyle="fullScreen" id="F2i-VP-Pl3"/>
@@ -72,7 +74,7 @@
             <objects>
                 <viewController id="3NS-h0-Iej" customClass="InputPinViewController" customModule="Plonter" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="JWw-73-O6V">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kBC-X6-hpv" customClass="PinCodeTextField" customModule="PinCodeTextField">
@@ -95,7 +97,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="Uez-vs-Vrn">
-                                <rect key="frame" x="177" y="396" width="21" height="20"/>
+                                <rect key="frame" x="177" y="384" width="21" height="37"/>
                             </activityIndicatorView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Input party pin" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lhz-6K-82G">
                                 <rect key="frame" x="45" y="37" width="285" height="69"/>
@@ -126,7 +128,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="CQ0-zN-mAa"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Join" image="plus_square" id="oAU-FD-LDE"/>
+                    <tabBarItem key="tabBarItem" title="Join" image="plus_sqaure" id="oAU-FD-LDE">
+                        <inset key="imageInsets" minX="50" minY="50" maxX="50" maxY="50"/>
+                    </tabBarItem>
                     <navigationItem key="navigationItem" id="ABo-Hj-seF"/>
                     <connections>
                         <outlet property="activityIndicator" destination="Uez-vs-Vrn" id="wOX-x4-2P3"/>
@@ -305,7 +309,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Home" image="house" id="1B7-Db-ypR"/>
+                    <tabBarItem key="tabBarItem" title="Home" image="house" id="1B7-Db-ypR">
+                        <inset key="imageInsets" minX="50" minY="50" maxX="50" maxY="50"/>
+                    </tabBarItem>
                     <connections>
                         <outlet property="hiNameLabel" destination="hrX-60-g2E" id="Znu-06-fbl"/>
                     </connections>
@@ -393,7 +399,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lef-mO-d9F">
-                                <rect key="frame" x="285" y="258" width="41" height="48"/>
+                                <rect key="frame" x="298" y="268" width="24" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="24" id="KLV-UD-97f"/>
+                                </constraints>
                                 <state key="normal" image="share"/>
                                 <connections>
                                     <action selector="didPressSharePin:" destination="jw3-xI-UII" eventType="touchUpInside" id="O7w-kL-dYl"/>
@@ -408,26 +417,25 @@
                             <constraint firstItem="BEE-Uq-GIO" firstAttribute="leading" secondItem="c1p-wc-HpI" secondAttribute="trailing" constant="8" id="CEM-oS-OsT"/>
                             <constraint firstItem="BEE-Uq-GIO" firstAttribute="baseline" secondItem="hQM-2v-oat" secondAttribute="baseline" id="CoN-lW-9H4"/>
                             <constraint firstItem="gf1-84-sUx" firstAttribute="top" secondItem="PyV-7Q-CG0" secondAttribute="bottom" constant="8" id="EQu-Xb-tHs"/>
-                            <constraint firstItem="Lef-mO-d9F" firstAttribute="top" secondItem="wi3-qG-lZO" secondAttribute="top" constant="258" id="Gcz-Rd-i6N"/>
+                            <constraint firstItem="Lef-mO-d9F" firstAttribute="top" secondItem="wi3-qG-lZO" secondAttribute="top" constant="268" id="HJb-H2-r5D"/>
                             <constraint firstItem="PyV-7Q-CG0" firstAttribute="leading" secondItem="wi3-qG-lZO" secondAttribute="leading" constant="34" id="KNI-Ah-iWN"/>
                             <constraint firstItem="fFC-Gi-2hK" firstAttribute="leading" secondItem="wi3-qG-lZO" secondAttribute="leading" constant="177" id="MGZ-zf-GQC"/>
                             <constraint firstItem="gf1-84-sUx" firstAttribute="leading" secondItem="wi3-qG-lZO" secondAttribute="leading" constant="140" id="Myi-Ur-7Du"/>
-                            <constraint firstItem="Lef-mO-d9F" firstAttribute="leading" secondItem="deu-DE-OJ0" secondAttribute="trailing" constant="18" id="NS1-Mh-Gh9"/>
                             <constraint firstItem="c1p-wc-HpI" firstAttribute="leading" secondItem="wi3-qG-lZO" secondAttribute="leading" constant="107" id="OtJ-QT-Ynd"/>
                             <constraint firstItem="rNv-Zs-Aax" firstAttribute="centerX" secondItem="fFC-Gi-2hK" secondAttribute="centerX" id="PwF-Ql-nRy"/>
                             <constraint firstItem="rNv-Zs-Aax" firstAttribute="centerX" secondItem="g06-kZ-BZ8" secondAttribute="centerX" id="Pxb-PA-zAV"/>
                             <constraint firstItem="PyV-7Q-CG0" firstAttribute="top" secondItem="fFC-Gi-2hK" secondAttribute="bottom" constant="63" id="QXz-Sn-EK5"/>
+                            <constraint firstItem="Lef-mO-d9F" firstAttribute="leading" secondItem="deu-DE-OJ0" secondAttribute="trailing" constant="31" id="RrW-t8-jye"/>
                             <constraint firstItem="fFC-Gi-2hK" firstAttribute="centerX" secondItem="PyV-7Q-CG0" secondAttribute="centerX" id="Vhb-6a-BKe"/>
-                            <constraint firstItem="deu-DE-OJ0" firstAttribute="centerY" secondItem="Lef-mO-d9F" secondAttribute="centerY" id="VkQ-Mw-EIc"/>
                             <constraint firstItem="Sy1-ql-T5n" firstAttribute="leading" secondItem="wi3-qG-lZO" secondAttribute="leading" constant="147" id="Y1e-Xo-csX"/>
                             <constraint firstItem="rNv-Zs-Aax" firstAttribute="leading" secondItem="wi3-qG-lZO" secondAttribute="leading" constant="156" id="aR8-ED-XeA"/>
-                            <constraint firstItem="wi3-qG-lZO" firstAttribute="trailing" secondItem="Lef-mO-d9F" secondAttribute="trailing" constant="49" id="c0G-Qg-BvY"/>
                             <constraint firstItem="PyV-7Q-CG0" firstAttribute="centerX" secondItem="gf1-84-sUx" secondAttribute="centerX" id="elY-zP-Vey"/>
                             <constraint firstItem="deu-DE-OJ0" firstAttribute="leading" secondItem="hQM-2v-oat" secondAttribute="trailing" constant="8" id="gU7-G8-Is6"/>
                             <constraint firstItem="c1p-wc-HpI" firstAttribute="top" secondItem="wi3-qG-lZO" secondAttribute="top" constant="252" id="iK4-Da-x5N"/>
                             <constraint firstItem="wi3-qG-lZO" firstAttribute="bottom" secondItem="Sy1-ql-T5n" secondAttribute="bottom" constant="65" id="l6w-vq-KQV"/>
                             <constraint firstItem="hQM-2v-oat" firstAttribute="baseline" secondItem="deu-DE-OJ0" secondAttribute="baseline" id="lE9-mI-5rh"/>
                             <constraint firstItem="rNv-Zs-Aax" firstAttribute="top" secondItem="wi3-qG-lZO" secondAttribute="top" constant="177" id="ou3-aC-tZo"/>
+                            <constraint firstItem="wi3-qG-lZO" firstAttribute="trailing" secondItem="Lef-mO-d9F" secondAttribute="trailing" constant="53" id="tBK-Bp-DTA"/>
                             <constraint firstItem="hQM-2v-oat" firstAttribute="leading" secondItem="BEE-Uq-GIO" secondAttribute="trailing" constant="8" id="uad-gQ-qlq"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="wi3-qG-lZO"/>
@@ -475,14 +483,14 @@
         </scene>
     </scenes>
     <resources>
-        <image name="house" width="20" height="18"/>
-        <image name="person_square" width="16" height="16"/>
-        <image name="plus_square" width="16" height="16"/>
-        <image name="share" width="15" height="19"/>
+        <image name="house" width="128" height="128"/>
+        <image name="person_sqaure" width="128" height="128"/>
+        <image name="plus_sqaure" width="128" height="128"/>
+        <image name="share" width="64" height="64"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="eX8-gu-Ksc"/>
+        <segue reference="F2i-VP-Pl3"/>
         <segue reference="0xh-Fc-f0n"/>
-        <segue reference="a2C-d2-Tgp"/>
+        <segue reference="K9v-w7-AV5"/>
     </inferredMetricsTieBreakers>
 </document>

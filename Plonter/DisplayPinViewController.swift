@@ -38,7 +38,7 @@ class DisplayPinViewController: UIViewController {
 		toggleHide(shouldHide: true)
 		createNewParty()
 		secondsStepper.minimumValue = 1
-		secondsStepper.maximumValue = 6
+		secondsStepper.maximumValue = 9
 		secondsStepper.value = 3
     }
     
