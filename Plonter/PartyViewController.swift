@@ -27,18 +27,38 @@ class PartyViewController: UIViewController {
 	override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-		getParty()
+		let ref = Database.database().reference().child("Parties").child(partyID)
+		ref.child("winner").observe(.value) { (snapshot) in
+			if snapshot.exists() {
+				// party done already
+				self.joinedThePartyLabel.text = "Someone already won"
+				self.canDismiss()
+			} else {
+				self.getParty()
+			}
+		}
 		myColorView.backgroundColor = UIColor(hexString: myColor)
 		myColorView.tintColor = UIColor(hexString: myColor)
 //		myColorView.
 		myColorLabel.textColor = myColorView.backgroundColor?.isDarkColor == true ? .white : .black
 		UIApplication.shared.isIdleTimerDisabled = true
-		let ref = Database.database().reference().child("Parties").child(partyID)
+		
 		ref.child("pin").observeSingleEvent(of: .value) { (snapshot) in
 			let partyPin = snapshot.value as? String
 			self.myColorLabel.text = "Party Pin: \(partyPin ?? "N/A")"
 		}
     }
+	
+	
+	func canDismiss() {
+		let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap))
+		self.view.addGestureRecognizer(tap)
+	}
+	@objc func handleTap(_ sender: UITapGestureRecognizer? = nil) {
+		// handling code
+		self.performSegue(withIdentifier: "toMain", sender: self)
+	}
+	
 	
 	func getParty() {
 		var latestMemberXCoordinates = self.view.frame.width/4
@@ -61,6 +81,7 @@ class PartyViewController: UIViewController {
 			})
 			self.joinedThePartyLabel.text = "\(JSON(snapshot.value!).stringValue) joined the party!"
 			self.joinedThePartyLabel.alpha = 0
+			
 			UIView.animate(withDuration: 1, delay: 0, options: .curveEaseIn, animations: {
 				self.joinedThePartyLabel.alpha = 1.0
 			}) { (yes) in
@@ -188,6 +209,7 @@ class PartyViewController: UIViewController {
 			label.text = "\(winnerName) Won ☹️"
 			label.textColor = self.view.backgroundColor?.isDarkColor == true ? .white : .black
 		}
+		self.canDismiss()
 	}
 
 	
