@@ -93,46 +93,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 		if components.path == "/parties" {
 			if let partyIDQueryItem = queryItems?.first(where: {$0.name == "party"}) {
 				guard let partyID = partyIDQueryItem.value else { return }
-				
-				shouldJoinParty(partyID, completion: { (myColor) -> Void in
-					let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-					guard let partyViewController = storyboard.instantiateViewController(withIdentifier: "PartyViewController") as? PartyViewController
-					else { return }
-					partyViewController.partyID = partyID
-					partyViewController.isCreator = false
-					partyViewController.myColor = myColor
-					partyViewController.modalPresentationStyle = .fullScreen
-					(self.window?.rootViewController)?.present(partyViewController, animated: true, completion: nil)
-				})
+				let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+				guard let inputPinViewController = storyboard.instantiateViewController(withIdentifier: "InputPinViewController") as? InputPinViewController
+				else { return }
+				inputPinViewController.partyID = partyID
+				inputPinViewController.FromDelegate = true
+				let tabVc = self.window?.rootViewController as! UITabBarController
+				tabVc.viewControllers = [ViewController(),inputPinViewController,UserCreateViewController()]
+				tabVc.selectedViewController = inputPinViewController
+//				inputPinViewController.modalPresentationStyle = .fullScreen
+//				(self.window?.rootViewController)?.present(inputPinViewController, animated: true, completion: nil)
 			}
-		}
-	}
-	
-	func shouldJoinParty(_ partyID: String, completion: @escaping (String) -> ()) {
-		let partyRef = Database.database().reference().child("Parties")
-		let ref = partyRef.child(partyID)
-		let user_id = UserDefaults.standard.string(forKey: "user_name")
-		
-		ref.observeSingleEvent(of: .value) { (snapshot) in
-			let postDict = snapshot.value as? [String : AnyObject] ?? [:]
-			if postDict.isEmpty {
-				// party doesn't exist
-			} else {
-				// party exists
-				let members = JSON(postDict["members"])
-				let randomColor = Colors.randomizeHexColor()
-				if members[randomColor].stringValue != "" {
-					// change color first
-					let newRandomColor = Colors.randomizeHexColor()
-					ref.child("members").child(newRandomColor).setValue(user_id!)
-					completion(newRandomColor)
-				} else {
-					// create the user with this color
-					ref.child("members").child(randomColor).setValue(user_id!)
-					completion(randomColor)
-				}
-			}
-			
 		}
 	}
 

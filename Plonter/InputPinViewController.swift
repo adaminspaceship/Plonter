@@ -17,6 +17,7 @@ class InputPinViewController: UIViewController, PinCodeTextFieldDelegate {
 	@IBOutlet weak var pinCodeField: PinCodeTextField!
 	var partyID = String()
 	var myColor = String()
+	var FromDelegate = Bool()
 	override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -26,6 +27,9 @@ class InputPinViewController: UIViewController, PinCodeTextFieldDelegate {
 		//Looks for single or multiple taps.
 		let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
 		view.addGestureRecognizer(tap)
+		if FromDelegate {
+			self.shouldJoinPartyFromDelegate(self.partyID)
+		}
     }
 	
 	// add member to party
@@ -36,6 +40,35 @@ class InputPinViewController: UIViewController, PinCodeTextFieldDelegate {
 			shouldJoinParty(textField)
 		}
 		
+	}
+	
+	func shouldJoinPartyFromDelegate(_ partyID: String) {
+		activityIndicator.startAnimating()
+		let user_id = UserDefaults.standard.string(forKey: "user_name")
+		let partyRef = Database.database().reference().child("Parties").child(partyID)
+		partyRef.observe(.value) { (snapshot) in
+			let json = JSON(snapshot.value!)
+			if !json.isEmpty {
+				let members = json["members"]
+				let randomColor = Colors.randomizeHexColor()
+				if members[randomColor].stringValue != "" {
+					// change color first
+					let newRandomColor = Colors.randomizeHexColor()
+					partyRef.child("members").child(newRandomColor).setValue(user_id!)
+					self.myColor = newRandomColor
+				} else {
+					// create the user with this color
+					partyRef.child("members").child(randomColor).setValue(user_id!)
+					self.myColor = randomColor
+				}
+				self.activityIndicator.stopAnimating()
+				Utilities.vibratePhone(.Peek)
+				self.performSegue(withIdentifier: "toParty", sender: self)
+				
+				
+				
+			} else if json.isEmpty { self.activityIndicator.stopAnimating() }
+		}
 	}
 	
 	func shouldJoinParty(_ textField: PinCodeTextField) {
@@ -70,7 +103,6 @@ class InputPinViewController: UIViewController, PinCodeTextFieldDelegate {
 					self.performSegue(withIdentifier: "toParty", sender: self)
 				}
 			}
-			
 		}
 	}
 

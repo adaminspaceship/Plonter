@@ -17,10 +17,7 @@ class ViewController: UIViewController {
 		super.viewDidLoad()
 		
 		// Do any additional setup after loading the view.
-		let userDefaults = UserDefaults.standard
-		if let user_name = userDefaults.string(forKey: "user_name") {
-			self.hiNameLabel.text = "Hi, \(user_name)!"
-		}
+		
 	}
 	
 	@IBAction func createPartyTapped(_ sender: Any) {
@@ -33,6 +30,10 @@ class ViewController: UIViewController {
 	
 	
 	override func viewDidAppear(_ animated: Bool) {
+		let userDefaults = UserDefaults.standard
+		if let user_name = userDefaults.string(forKey: "user_name") {
+			self.hiNameLabel.text = "Hi, \(user_name)!"
+		}
 		if Utilities.firstLaunch() {
 			let storyboard = UIStoryboard(name: "Main", bundle: nil)
 			let userCreateViewController = storyboard.instantiateViewController(withIdentifier: "UserCreateViewController")
