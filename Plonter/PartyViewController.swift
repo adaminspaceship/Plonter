@@ -21,7 +21,6 @@ class PartyViewController: UIViewController {
 	@IBOutlet weak var secondsLeft: UILabel!
 	@IBOutlet weak var myColorView: UIView!
 	@IBOutlet weak var myColorLabel: UILabel!
-	var memberArray = [String]()
 	var bubbles = [UIView]()
 	@IBOutlet weak var joinedThePartyLabel: UILabel!
 	override func viewDidLoad() {
@@ -39,7 +38,6 @@ class PartyViewController: UIViewController {
 		}
 		myColorView.backgroundColor = UIColor(hexString: myColor)
 		myColorView.tintColor = UIColor(hexString: myColor)
-//		myColorView.
 		myColorLabel.textColor = myColorView.backgroundColor?.isDarkColor == true ? .white : .black
 		UIApplication.shared.isIdleTimerDisabled = true
 		
@@ -49,7 +47,6 @@ class PartyViewController: UIViewController {
 		}
     }
 	
-	
 	func canDismiss() {
 		let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap))
 		self.view.addGestureRecognizer(tap)
@@ -58,8 +55,7 @@ class PartyViewController: UIViewController {
 		// handling code
 		self.performSegue(withIdentifier: "toMain", sender: self)
 	}
-	
-	
+	var membersAdded = 0
 	func getParty() {
 		var latestMemberXCoordinates = self.view.frame.width/4
 		var latestMemberYCoordinates = 213
@@ -79,6 +75,7 @@ class PartyViewController: UIViewController {
 			UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: [], animations:  {
 				bubble.transform = CGAffineTransform(scaleX: 85, y: 85)
 			})
+			self.membersAdded += 1
 			self.joinedThePartyLabel.text = "\(JSON(snapshot.value!).stringValue) joined the party!"
 			self.joinedThePartyLabel.alpha = 0
 			
@@ -90,17 +87,26 @@ class PartyViewController: UIViewController {
 				}, completion: nil)
 			}
 			latestMemberXCoordinates+=200
-		}
-		
-		if self.isCreator {
-			ref.child("secondsToJoin").observeSingleEvent(of: .value) { (snapshot) in
-				let endTime = Int(Date().timeIntervalSince1970)+Int(snapshot.value as! String)! // change depending on user
-				self.startTimer(endTime)
+			
+			if !(self.timer?.isValid ?? false) {
+				if self.isCreator {
+					if self.membersAdded == 2 {
+						ref.child("secondsToJoin").observeSingleEvent(of: .value) { (snapshot) in
+							let endTime = Int(Date().timeIntervalSince1970)+Int(snapshot.value as! String)! // change depending on user
+							self.startTimer(endTime)
+						}
+					} else if self.membersAdded == 1 {
+						self.secondsLeft.text = "Waiting for one more"
+					}
+				} else {
+					self.startClientTimer()
+				}
 			}
-		} else {
-			self.startClientTimer()
+				
+			
 		}
 		
+				
 		
 		
 	}
@@ -167,7 +173,6 @@ class PartyViewController: UIViewController {
 	
 	
 	func checkIfWinner(winnerHEX: String, winnerName: String) {
-		
 		// hiding
 		for bubble in self.bubbles {
 			bubble.removeFromSuperview()

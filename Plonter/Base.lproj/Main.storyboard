@@ -191,7 +191,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tomer joined the party!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XKr-P8-ovK">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XKr-P8-ovK">
                                 <rect key="frame" x="46" y="641" width="283" height="62"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="283" id="XDe-yc-hCL"/>
@@ -490,7 +490,7 @@
         <image name="share" width="64" height="64"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="F2i-VP-Pl3"/>
+        <segue reference="eX8-gu-Ksc"/>
         <segue reference="RVP-qj-WXc"/>
         <segue reference="K9v-w7-AV5"/>
     </inferredMetricsTieBreakers>

@@ -93,15 +93,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 		if components.path == "/parties" {
 			if let partyIDQueryItem = queryItems?.first(where: {$0.name == "party"}) {
 				guard let partyID = partyIDQueryItem.value else { return }
-				let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-				guard let partyViewController = storyboard.instantiateViewController(withIdentifier: "PartyViewController") as? PartyViewController
-					else { return }
-				partyViewController.partyID = partyID
-				partyViewController.isCreator = false
+				
 				shouldJoinParty(partyID, completion: { (myColor) -> Void in
+					let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+					guard let partyViewController = storyboard.instantiateViewController(withIdentifier: "PartyViewController") as? PartyViewController
+					else { return }
+					partyViewController.partyID = partyID
+					partyViewController.isCreator = false
 					partyViewController.myColor = myColor
 					partyViewController.modalPresentationStyle = .fullScreen
-					(self.window?.rootViewController as? UIViewController)?.present(partyViewController, animated: true, completion: nil)
+					(self.window?.rootViewController)?.present(partyViewController, animated: true, completion: nil)
 				})
 			}
 		}

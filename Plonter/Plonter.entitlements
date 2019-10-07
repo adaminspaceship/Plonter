@@ -4,7 +4,7 @@
 <dict>
 	<key>com.apple.developer.associated-domains</key>
 	<array>
-		<string>applinks:plonterApp.page.link</string>
+		<string>applinks:plonterapp.page.link</string>
 	</array>
 </dict>
 </plist>
