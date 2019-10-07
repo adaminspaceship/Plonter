@@ -98,11 +98,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 				else { return }
 				inputPinViewController.partyID = partyID
 				inputPinViewController.FromDelegate = true
-				let tabVc = self.window?.rootViewController as! UITabBarController
-				tabVc.viewControllers = [ViewController(),inputPinViewController,UserCreateViewController()]
-				tabVc.selectedViewController = inputPinViewController
-//				inputPinViewController.modalPresentationStyle = .fullScreen
-//				(self.window?.rootViewController)?.present(inputPinViewController, animated: true, completion: nil)
+				(self.window?.rootViewController)?.present(inputPinViewController, animated: true, completion: nil)
 			}
 		}
 	}

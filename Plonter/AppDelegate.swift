@@ -67,7 +67,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 				else { return }
 				inputPinViewController.partyID = partyID
 				inputPinViewController.FromDelegate = true
-				inputPinViewController.modalPresentationStyle = .fullScreen
 				(self.window?.rootViewController)?.present(inputPinViewController, animated: true, completion: nil)
 			}
 		}

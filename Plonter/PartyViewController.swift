@@ -53,7 +53,8 @@ class PartyViewController: UIViewController {
 	}
 	@objc func handleTap(_ sender: UITapGestureRecognizer? = nil) {
 		// handling code
-		self.performSegue(withIdentifier: "toMain", sender: self)
+		self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
+//		self.performSegue(withIdentifier: "toMain", sender: self)
 	}
 	var membersAdded = 0
 	func getParty() {

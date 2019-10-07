@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="soO-wj-uCS">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -62,19 +62,18 @@
                     </tabBarItem>
                     <connections>
                         <outlet property="firstNameTextField" destination="bMZ-x0-MZL" id="4Ee-ib-HSl"/>
-                        <segue destination="soO-wj-uCS" kind="presentation" identifier="toTabBar" modalPresentationStyle="fullScreen" id="F2i-VP-Pl3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q9Y-hi-Xwo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="136.80000000000001" y="-647.29064039408865"/>
+            <point key="canvasLocation" x="70" y="137"/>
         </scene>
         <!--Join-->
         <scene sceneID="ilr-GI-u78">
             <objects>
                 <viewController storyboardIdentifier="InputPinViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="3NS-h0-Iej" customClass="InputPinViewController" customModule="Plonter" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="JWw-73-O6V">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kBC-X6-hpv" customClass="PinCodeTextField" customModule="PinCodeTextField">
@@ -97,7 +96,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="Uez-vs-Vrn">
-                                <rect key="frame" x="177" y="384" width="21" height="37"/>
+                                <rect key="frame" x="177" y="396" width="21" height="20"/>
                             </activityIndicatorView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Input party pin" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lhz-6K-82G">
                                 <rect key="frame" x="45" y="37" width="285" height="69"/>
@@ -140,7 +139,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sa6-8J-62S" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1045.5999999999999" y="-647.29064039408865"/>
+            <point key="canvasLocation" x="2129" y="-502"/>
         </scene>
         <!--Party View Controller-->
         <scene sceneID="RmI-eI-lWc">
@@ -221,12 +220,12 @@
                         <outlet property="myColorLabel" destination="w2D-cE-H83" id="d9O-tD-ec3"/>
                         <outlet property="myColorView" destination="rKv-B4-63d" id="FVG-va-0wH"/>
                         <outlet property="secondsLeft" destination="BDo-fE-C43" id="afF-kn-ZFd"/>
-                        <segue destination="soO-wj-uCS" kind="presentation" identifier="toMain" modalPresentationStyle="fullScreen" id="eX8-gu-Ksc"/>
+                        <segue destination="BYZ-38-t0r" kind="presentation" identifier="toMain" modalPresentationStyle="fullScreen" id="rXA-tO-mz7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UOu-MU-3T5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2308" y="-647.29064039408865"/>
+            <point key="canvasLocation" x="3753" y="137"/>
         </scene>
         <!--Home-->
         <scene sceneID="tne-QT-ifu">
@@ -237,7 +236,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R94-rv-F9n">
-                                <rect key="frame" x="27" y="290" width="321" height="66"/>
+                                <rect key="frame" x="27" y="339" width="321" height="66"/>
                                 <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="66" id="F6C-uc-vg1"/>
@@ -263,7 +262,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cNY-Tu-zdn">
-                                <rect key="frame" x="27" y="437" width="321" height="66"/>
+                                <rect key="frame" x="27" y="486" width="321" height="66"/>
                                 <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="66" id="igB-5w-2Xy"/>
@@ -408,7 +407,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lef-mO-d9F">
-                                <rect key="frame" x="298" y="263" width="24" height="24"/>
+                                <rect key="frame" x="297.66666666666669" y="263" width="24" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="24" id="KLV-UD-97f"/>
                                     <constraint firstAttribute="width" constant="24" id="eWF-il-5k7"/>
@@ -455,29 +454,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fQL-yG-uoo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1924" y="136.69950738916256"/>
-        </scene>
-        <!--Tab Bar Controller-->
-        <scene sceneID="iNU-Jv-8UE">
-            <objects>
-                <tabBarController storyboardIdentifier="tabbar" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="soO-wj-uCS" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationItem key="navigationItem" id="N5Z-Nw-9i0"/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="31y-4g-XyS">
-                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="selectedImageTintColor" systemColor="systemOrangeColor" red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    </tabBar>
-                    <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="z63-9l-Swn"/>
-                        <segue destination="3NS-h0-Iej" kind="relationship" relationship="viewControllers" id="K9v-w7-AV5"/>
-                        <segue destination="d3g-Rb-rFm" kind="relationship" relationship="viewControllers" id="Xc3-We-P0w"/>
-                    </connections>
-                </tabBarController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="lz7-Ki-Pib" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="137.68115942028987" y="137.94642857142856"/>
+            <point key="canvasLocation" x="2129" y="811"/>
         </scene>
     </scenes>
     <resources>
@@ -487,8 +464,6 @@
         <image name="share" width="64" height="64"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="eX8-gu-Ksc"/>
         <segue reference="0xh-Fc-f0n"/>
-        <segue reference="K9v-w7-AV5"/>
     </inferredMetricsTieBreakers>
 </document>
