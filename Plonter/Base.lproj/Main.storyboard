@@ -339,6 +339,9 @@
                                 <state key="normal" title="Done">
                                     <color key="titleColor" systemColor="systemOrangeColor" red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <state key="disabled">
+                                    <color key="titleColor" systemColor="tertiaryLabelColor" red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="didPressDone:" destination="jw3-xI-UII" eventType="touchUpInside" id="Mc7-IY-fis"/>
                                 </connections>
@@ -400,8 +403,8 @@
                                     <action selector="secondsStepperChanged:" destination="jw3-xI-UII" eventType="valueChanged" id="gc3-e5-Yes"/>
                                 </connections>
                             </stepper>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="30 seconds to join party" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PyV-7Q-CG0">
-                                <rect key="frame" x="71.000000000000014" y="420" width="233.33333333333337" height="27.666666666666686"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1 party member" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PyV-7Q-CG0">
+                                <rect key="frame" x="112.00000000000001" y="420" width="151.33333333333337" height="27.666666666666686"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="23"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -464,6 +467,6 @@
         <image name="share" width="64" height="64"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="0xh-Fc-f0n"/>
+        <segue reference="RVP-qj-WXc"/>
     </inferredMetricsTieBreakers>
 </document>

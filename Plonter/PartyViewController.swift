@@ -10,10 +10,11 @@ import UIKit
 import FirebaseDatabase
 import SwiftyJSON
 import SAConfettiView
-
+import AVFoundation
 
 class PartyViewController: UIViewController {
 	
+	var player:AVAudioPlayer!
 	var myColor = String()
 	var partyID = String()
 	var isCreator = Bool()
@@ -23,6 +24,9 @@ class PartyViewController: UIViewController {
 	@IBOutlet weak var myColorLabel: UILabel!
 	var bubbles = [UIView]()
 	@IBOutlet weak var joinedThePartyLabel: UILabel!
+	var totalMembers = Int()
+	
+	
 	override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -41,9 +45,12 @@ class PartyViewController: UIViewController {
 		myColorLabel.textColor = myColorView.backgroundColor?.isDarkColor == true ? .white : .black
 		UIApplication.shared.isIdleTimerDisabled = true
 		
-		ref.child("pin").observeSingleEvent(of: .value) { (snapshot) in
-			let partyPin = snapshot.value as? String
-			self.myColorLabel.text = "Party Pin: \(partyPin ?? "N/A")"
+		ref.observeSingleEvent(of: .value) { (snapshot) in
+			let partyJSON = JSON(snapshot.value!)
+			let totalMembers = partyJSON["totalMembers"].intValue
+			self.totalMembers = totalMembers
+			let partyPin = partyJSON["pin"].stringValue
+			self.myColorLabel.text = "Party Pin: \(partyPin)"
 		}
     }
 	
@@ -52,9 +59,10 @@ class PartyViewController: UIViewController {
 		self.view.addGestureRecognizer(tap)
 	}
 	@objc func handleTap(_ sender: UITapGestureRecognizer? = nil) {
+		// fade out applause/aww
+		player.setVolume(0, fadeDuration: 2)
 		// handling code
 		self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
-//		self.performSegue(withIdentifier: "toMain", sender: self)
 	}
 	var membersAdded = 0
 	func getParty() {
@@ -89,21 +97,17 @@ class PartyViewController: UIViewController {
 			}
 			latestMemberXCoordinates+=200
 			
-			if !(self.timer?.isValid ?? false) {
+			if self.membersAdded == self.totalMembers {
 				if self.isCreator {
-					if self.membersAdded == 2 {
-						ref.child("secondsToJoin").observeSingleEvent(of: .value) { (snapshot) in
-							let endTime = Int(Date().timeIntervalSince1970)+Int(snapshot.value as! String)! // change depending on user
-							self.startTimer(endTime)
-						}
-					} else if self.membersAdded == 1 {
-						self.secondsLeft.text = "Waiting for one more"
-					}
-				} else {
+					// start game
+					ref.child("shouldStart").setValue(true)
+					self.startTimer()
+				} else if !self.isCreator {
 					self.startClientTimer()
 				}
+			} else {
+				self.secondsLeft.text = "Waiting for \(self.totalMembers-self.membersAdded) more to join" // change
 			}
-				
 			
 		}
 		
@@ -112,31 +116,21 @@ class PartyViewController: UIViewController {
 		
 	}
 	
-	func startTimer(_ endTime: Int) {
-		let ref = Database.database().reference().child("Parties").child(partyID)
-		ref.child("endTime").setValue(String(endTime))
-		timer = Timer.scheduledTimer(timeInterval: 0.3, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
-		self.endTime = endTime
-		
+	func startTimer() {
+		playAudio("final")
+		self.secondsLeft.isHidden = true
+		timer = Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: false)
 	}
-	var endTime = Int()
-//	ref.child("endTime").observe(.value) { (snapshot) in
-//		let retrievedEndTime =
-//	}
 	
 	@objc func updateTimer(_ sender: Timer) {
-		let secondsRemaining = self.endTime-Int(Date().timeIntervalSince1970)
-		secondsLeft.text = "\(secondsRemaining) seconds left to join"
-		if secondsRemaining == 0 { self.animatebubbles() }
+		// change seconds left label here
+		animatebubbles()
 	}
-//	let retrievedEndTime = Date(timeIntervalSince1970: Double(endTime))
 	func startClientTimer() {
 		let ref = Database.database().reference().child("Parties").child(partyID)
-		ref.child("endTime").observe(.value) { (snapshot) in
+		ref.child("shouldStart").observe(.value) { (snapshot) in
 			if snapshot.exists() {
-				let endTime = snapshot.value as? String
-				self.endTime = Int(endTime!)!
-				self.timer = Timer.scheduledTimer(timeInterval: 0.3, target: self, selector: #selector(self.updateTimer), userInfo: nil, repeats: true)
+				self.startTimer()
 			}
 		}
 		
@@ -204,16 +198,17 @@ class PartyViewController: UIViewController {
 			print("you won!")
 			label.text = "You Won ⭐️"
 			label.textColor = self.view.backgroundColor?.isDarkColor == true ? .white : .black
+			playAudio("applause")
 			// adding confetti
 			let confettiView = SAConfettiView(frame: self.view.bounds)
 			self.view.addSubview(confettiView)
-			label.sendSubviewToBack(confettiView)
 			confettiView.startConfetti()
 		} else {
 			// you lose
 			print("you lost!")
-			label.text = "\(winnerName) Won ☹️"
+			label.text = "\(winnerName) Won"
 			label.textColor = self.view.backgroundColor?.isDarkColor == true ? .white : .black
+			playAudio("aww")
 		}
 		self.canDismiss()
 	}

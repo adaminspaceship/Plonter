@@ -23,6 +23,9 @@
 		99BAADD22345587300E4D978 /* PlonterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99BAADD12345587300E4D978 /* PlonterUITests.swift */; };
 		99BAADE023455B3A00E4D978 /* FriendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99BAADDF23455B3A00E4D978 /* FriendTableViewCell.swift */; };
 		99BAADE223455BC300E4D978 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99BAADE123455BC300E4D978 /* Colors.swift */; };
+		99E88262234F6A580026B4E3 /* final.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 99E88261234F6A580026B4E3 /* final.mp3 */; };
+		99E88265234FD58C0026B4E3 /* aww.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 99E88263234FD58C0026B4E3 /* aww.mp3 */; };
+		99E88266234FD58C0026B4E3 /* applause.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 99E88264234FD58C0026B4E3 /* applause.mp3 */; };
 		99F6EC422346565700747E82 /* InputPinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99F6EC412346565700747E82 /* InputPinViewController.swift */; };
 		99F6EC442346631300747E82 /* PartyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99F6EC432346631300747E82 /* PartyViewController.swift */; };
 		99F6EC462346699300747E82 /* UIView+IBDesignables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99F6EC452346699300747E82 /* UIView+IBDesignables.swift */; };
@@ -76,6 +79,9 @@
 		99BAADD32345587300E4D978 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		99BAADDF23455B3A00E4D978 /* FriendTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendTableViewCell.swift; sourceTree = "<group>"; };
 		99BAADE123455BC300E4D978 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		99E88261234F6A580026B4E3 /* final.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = final.mp3; sourceTree = "<group>"; };
+		99E88263234FD58C0026B4E3 /* aww.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = aww.mp3; sourceTree = "<group>"; };
+		99E88264234FD58C0026B4E3 /* applause.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = applause.mp3; sourceTree = "<group>"; };
 		99F6EC412346565700747E82 /* InputPinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputPinViewController.swift; sourceTree = "<group>"; };
 		99F6EC432346631300747E82 /* PartyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyViewController.swift; sourceTree = "<group>"; };
 		99F6EC452346699300747E82 /* UIView+IBDesignables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+IBDesignables.swift"; sourceTree = "<group>"; };
@@ -138,6 +144,9 @@
 				994C7B3323477B5500FA62B5 /* Plonter.entitlements */,
 				99BAADAC2345587100E4D978 /* AppDelegate.swift */,
 				99BAADAE2345587100E4D978 /* SceneDelegate.swift */,
+				99E88261234F6A580026B4E3 /* final.mp3 */,
+				99E88264234FD58C0026B4E3 /* applause.mp3 */,
+				99E88263234FD58C0026B4E3 /* aww.mp3 */,
 				992BACB52348CEE900F5A04A /* Utilities.swift */,
 				99BAADB02345587100E4D978 /* ViewController.swift */,
 				99BAADE123455BC300E4D978 /* Colors.swift */,
@@ -305,10 +314,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				99E88265234FD58C0026B4E3 /* aww.mp3 in Resources */,
+				99E88262234F6A580026B4E3 /* final.mp3 in Resources */,
 				99BAADBC2345587300E4D978 /* LaunchScreen.storyboard in Resources */,
 				99A4ABC7234775C30066612C /* GoogleService-Info.plist in Resources */,
 				99BAADB92345587300E4D978 /* Assets.xcassets in Resources */,
 				99BAADB42345587100E4D978 /* Main.storyboard in Resources */,
+				99E88266234FD58C0026B4E3 /* applause.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

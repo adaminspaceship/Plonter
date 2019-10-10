@@ -38,22 +38,35 @@ class DisplayPinViewController: UIViewController {
 		toggleHide(shouldHide: true)
 		createNewParty()
 		secondsStepper.minimumValue = 1
-		secondsStepper.maximumValue = 9
-		secondsStepper.value = 3
+		secondsStepper.maximumValue = 6 // change later on
+		secondsStepper.value = 1
+		hideButton(button: doneButton, shouldHide: true)
     }
     
 	@IBAction func didPressSharePin(_ sender: Any) {
 		createURL()
 	}
 	
+	func hideButton(button: UIButton, shouldHide: Bool){
+		doneButton.isEnabled = !shouldHide
+	}
+	
 	@IBAction func didPressDone(_ sender: Any) {
 		let newPartyRef = Database.database().reference().child("Parties").child(partyID)
-		newPartyRef.child("secondsToJoin").setValue(String(Int(secondsStepper.value)*10))
+		newPartyRef.child("totalMembers").setValue(String(secondsStepper.value))
 		self.performSegue(withIdentifier: "toCreateParty", sender: self)
 	}
 	
 	@IBAction func secondsStepperChanged(_ sender: UIStepper) {
-		secondsToJoin.text = "\(Int(sender.value)*10) seconds to join party"
+		hideButton(button: doneButton, shouldHide: false)
+		//if statement for member/members
+		if sender.value == 1 {
+			self.hideButton(button: self.doneButton, shouldHide: true)
+			self.secondsToJoin.text = "\(Int(sender.value)) party member"
+		} else {
+			self.secondsToJoin.text = "\(Int(sender.value)) party members"
+		}
+		
 	}
 	
 	func createNewParty() {

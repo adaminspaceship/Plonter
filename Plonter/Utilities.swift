@@ -8,6 +8,8 @@
 
 import Foundation
 import AudioToolbox
+import AVFoundation
+
 struct Utilities {
 	
 	static func firstLaunch()->Bool{
@@ -31,10 +33,24 @@ struct Utilities {
 		}
 	}
 	
+	
+	
 	enum vibrationType {
 		case Peek
 		case Pop
 		case Nope
 	}
 	
+}
+
+extension PartyViewController {
+	
+	
+	func playAudio(_ fileName: String) {
+		guard let path = Bundle.main.path(forResource: fileName, ofType: "mp3") else { return }
+        let soundURl = URL(fileURLWithPath: path)
+        player = try? AVAudioPlayer(contentsOf: soundURl)
+        player.prepareToPlay()
+        player.play()
+	}
 }
