@@ -63,7 +63,7 @@
 		994C0A3B2345DFAB00473FD8 /* DisplayPinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayPinViewController.swift; sourceTree = "<group>"; };
 		994C7B3323477B5500FA62B5 /* Plonter.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Plonter.entitlements; sourceTree = "<group>"; };
 		99A4ABC6234775C30066612C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		99BAADA92345587100E4D978 /* Plonter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Plonter.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		99BAADA92345587100E4D978 /* Shirli.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shirli.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		99BAADAC2345587100E4D978 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		99BAADAE2345587100E4D978 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		99BAADB02345587100E4D978 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -71,10 +71,10 @@
 		99BAADB82345587300E4D978 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		99BAADBB2345587300E4D978 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		99BAADBD2345587300E4D978 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		99BAADC22345587300E4D978 /* PlonterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PlonterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		99BAADC22345587300E4D978 /* ShirliTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ShirliTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		99BAADC62345587300E4D978 /* PlonterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlonterTests.swift; sourceTree = "<group>"; };
 		99BAADC82345587300E4D978 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		99BAADCD2345587300E4D978 /* PlonterUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PlonterUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		99BAADCD2345587300E4D978 /* ShirliUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ShirliUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		99BAADD12345587300E4D978 /* PlonterUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlonterUITests.swift; sourceTree = "<group>"; };
 		99BAADD32345587300E4D978 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		99BAADDF23455B3A00E4D978 /* FriendTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendTableViewCell.swift; sourceTree = "<group>"; };
@@ -131,9 +131,9 @@
 		99BAADAA2345587100E4D978 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				99BAADA92345587100E4D978 /* Plonter.app */,
-				99BAADC22345587300E4D978 /* PlonterTests.xctest */,
-				99BAADCD2345587300E4D978 /* PlonterUITests.xctest */,
+				99BAADA92345587100E4D978 /* Shirli.app */,
+				99BAADC22345587300E4D978 /* ShirliTests.xctest */,
+				99BAADCD2345587300E4D978 /* ShirliUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -209,9 +209,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		99BAADA82345587100E4D978 /* Plonter */ = {
+		99BAADA82345587100E4D978 /* Shirli */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 99BAADD62345587300E4D978 /* Build configuration list for PBXNativeTarget "Plonter" */;
+			buildConfigurationList = 99BAADD62345587300E4D978 /* Build configuration list for PBXNativeTarget "Shirli" */;
 			buildPhases = (
 				8775577B0D53E0CC732C6B85 /* [CP] Check Pods Manifest.lock */,
 				99BAADA52345587100E4D978 /* Sources */,
@@ -223,14 +223,14 @@
 			);
 			dependencies = (
 			);
-			name = Plonter;
+			name = Shirli;
 			productName = Plonter;
-			productReference = 99BAADA92345587100E4D978 /* Plonter.app */;
+			productReference = 99BAADA92345587100E4D978 /* Shirli.app */;
 			productType = "com.apple.product-type.application";
 		};
-		99BAADC12345587300E4D978 /* PlonterTests */ = {
+		99BAADC12345587300E4D978 /* ShirliTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 99BAADD92345587300E4D978 /* Build configuration list for PBXNativeTarget "PlonterTests" */;
+			buildConfigurationList = 99BAADD92345587300E4D978 /* Build configuration list for PBXNativeTarget "ShirliTests" */;
 			buildPhases = (
 				C2837B918828C60C35BCE4EE /* [CP] Check Pods Manifest.lock */,
 				99BAADBE2345587300E4D978 /* Sources */,
@@ -242,14 +242,14 @@
 			dependencies = (
 				99BAADC42345587300E4D978 /* PBXTargetDependency */,
 			);
-			name = PlonterTests;
+			name = ShirliTests;
 			productName = PlonterTests;
-			productReference = 99BAADC22345587300E4D978 /* PlonterTests.xctest */;
+			productReference = 99BAADC22345587300E4D978 /* ShirliTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		99BAADCC2345587300E4D978 /* PlonterUITests */ = {
+		99BAADCC2345587300E4D978 /* ShirliUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 99BAADDC2345587300E4D978 /* Build configuration list for PBXNativeTarget "PlonterUITests" */;
+			buildConfigurationList = 99BAADDC2345587300E4D978 /* Build configuration list for PBXNativeTarget "ShirliUITests" */;
 			buildPhases = (
 				4344C386D049D590B6271976 /* [CP] Check Pods Manifest.lock */,
 				99BAADC92345587300E4D978 /* Sources */,
@@ -261,9 +261,9 @@
 			dependencies = (
 				99BAADCF2345587300E4D978 /* PBXTargetDependency */,
 			);
-			name = PlonterUITests;
+			name = ShirliUITests;
 			productName = PlonterUITests;
-			productReference = 99BAADCD2345587300E4D978 /* PlonterUITests.xctest */;
+			productReference = 99BAADCD2345587300E4D978 /* ShirliUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -289,7 +289,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 99BAADA42345587100E4D978 /* Build configuration list for PBXProject "Plonter" */;
+			buildConfigurationList = 99BAADA42345587100E4D978 /* Build configuration list for PBXProject "Shirli" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -302,9 +302,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				99BAADA82345587100E4D978 /* Plonter */,
-				99BAADC12345587300E4D978 /* PlonterTests */,
-				99BAADCC2345587300E4D978 /* PlonterUITests */,
+				99BAADA82345587100E4D978 /* Shirli */,
+				99BAADC12345587300E4D978 /* ShirliTests */,
+				99BAADCC2345587300E4D978 /* ShirliUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -466,12 +466,12 @@
 /* Begin PBXTargetDependency section */
 		99BAADC42345587300E4D978 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 99BAADA82345587100E4D978 /* Plonter */;
+			target = 99BAADA82345587100E4D978 /* Shirli */;
 			targetProxy = 99BAADC32345587300E4D978 /* PBXContainerItemProxy */;
 		};
 		99BAADCF2345587300E4D978 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 99BAADA82345587100E4D978 /* Plonter */;
+			target = 99BAADA82345587100E4D978 /* Shirli */;
 			targetProxy = 99BAADCE2345587300E4D978 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -624,7 +624,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.adameliezerov.Plonter;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Shirli;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -644,7 +644,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.adameliezerov.Plonter;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Shirli;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -669,7 +669,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Plonter.app/Plonter";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Shirli.app/Shirli";
 			};
 			name = Debug;
 		};
@@ -692,7 +692,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Plonter.app/Plonter";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Shirli.app/Shirli";
 			};
 			name = Release;
 		};
@@ -741,7 +741,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		99BAADA42345587100E4D978 /* Build configuration list for PBXProject "Plonter" */ = {
+		99BAADA42345587100E4D978 /* Build configuration list for PBXProject "Shirli" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				99BAADD42345587300E4D978 /* Debug */,
@@ -750,7 +750,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		99BAADD62345587300E4D978 /* Build configuration list for PBXNativeTarget "Plonter" */ = {
+		99BAADD62345587300E4D978 /* Build configuration list for PBXNativeTarget "Shirli" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				99BAADD72345587300E4D978 /* Debug */,
@@ -759,7 +759,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		99BAADD92345587300E4D978 /* Build configuration list for PBXNativeTarget "PlonterTests" */ = {
+		99BAADD92345587300E4D978 /* Build configuration list for PBXNativeTarget "ShirliTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				99BAADDA2345587300E4D978 /* Debug */,
@@ -768,7 +768,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		99BAADDC2345587300E4D978 /* Build configuration list for PBXNativeTarget "PlonterUITests" */ = {
+		99BAADDC2345587300E4D978 /* Build configuration list for PBXNativeTarget "ShirliUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				99BAADDD2345587300E4D978 /* Debug */,

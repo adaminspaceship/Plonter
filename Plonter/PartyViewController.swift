@@ -106,26 +106,20 @@ class PartyViewController: UIViewController {
 					self.startClientTimer()
 				}
 			} else {
+				print("members added: \(self.membersAdded), total members: \(self.totalMembers)")
 				self.secondsLeft.text = "Waiting for \(self.totalMembers-self.membersAdded) more to join" // change
 			}
 			
 		}
-		
-				
-		
 		
 	}
 	
 	func startTimer() {
 		playAudio("final")
 		self.secondsLeft.isHidden = true
-		timer = Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: false)
+		timer = Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(animatebubbles), userInfo: nil, repeats: false)
 	}
 	
-	@objc func updateTimer(_ sender: Timer) {
-		// change seconds left label here
-		animatebubbles()
-	}
 	func startClientTimer() {
 		let ref = Database.database().reference().child("Parties").child(partyID)
 		ref.child("shouldStart").observe(.value) { (snapshot) in
@@ -133,9 +127,9 @@ class PartyViewController: UIViewController {
 				self.startTimer()
 			}
 		}
-		
 	}
-	func animatebubbles() {
+	
+	@objc func animatebubbles() {
 		timer?.invalidate()
 		secondsLeft.isHidden = true
 		if isCreator {
@@ -162,7 +156,6 @@ class PartyViewController: UIViewController {
 				
 			}
 		}
-		
 	}
 	
 	
@@ -195,7 +188,6 @@ class PartyViewController: UIViewController {
 		// add sound
 		if myColor == winnerHEX {
 			// you win
-			print("you won!")
 			label.text = "You Won ⭐️"
 			label.textColor = self.view.backgroundColor?.isDarkColor == true ? .white : .black
 			playAudio("applause")
@@ -205,7 +197,6 @@ class PartyViewController: UIViewController {
 			confettiView.startConfetti()
 		} else {
 			// you lose
-			print("you lost!")
 			label.text = "\(winnerName) Won"
 			label.textColor = self.view.backgroundColor?.isDarkColor == true ? .white : .black
 			playAudio("aww")

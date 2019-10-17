@@ -10,7 +10,7 @@ import UIKit
 import FirebaseDatabase
 import FirebaseDynamicLinks
 
-class DisplayPinViewController: UIViewController {
+class DisplayPinViewController: UIViewController, UIAdaptivePresentationControllerDelegate {
 	
 	@IBOutlet weak var secondsStepper: UIStepper!
 	@IBOutlet weak var secondsToJoin: UILabel!
@@ -53,7 +53,7 @@ class DisplayPinViewController: UIViewController {
 	
 	@IBAction func didPressDone(_ sender: Any) {
 		let newPartyRef = Database.database().reference().child("Parties").child(partyID)
-		newPartyRef.child("totalMembers").setValue(String(secondsStepper.value))
+		newPartyRef.child("totalMembers").setValue(String(Int(secondsStepper.value)))
 		self.performSegue(withIdentifier: "toCreateParty", sender: self)
 	}
 	
@@ -76,7 +76,7 @@ class DisplayPinViewController: UIViewController {
 		partyID = newPartyRef.key!
 		myColor = Colors.randomizeHexColor()
 		
-		newPartyRef.setValue(["members":[myColor:user_id],"pin":partyPin,"secondsToJoin":Int(secondsStepper.value)])
+		newPartyRef.setValue(["members":[myColor:user_id],"pin":partyPin])
 		toggleHide(shouldHide: false)
 		for digit in PinDigits {
 			digit.text = partyPin[digit.tag]
@@ -100,9 +100,16 @@ class DisplayPinViewController: UIViewController {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
 		let partyViewController = segue.destination as? PartyViewController
-		partyViewController?.partyID = partyID
-		partyViewController?.isCreator = true
-		partyViewController?.myColor = myColor
+		
+		if segue.destination == partyViewController {
+			partyViewController?.partyID = partyID
+			partyViewController?.isCreator = true
+			partyViewController?.myColor = myColor
+		} else if segue.destination == ViewController(){
+			let partyRef = Database.database().reference().child("Parties").child("partyID")
+			partyRef.removeValue() // remove party if disconnecting vc
+		}
+		
     }
 
 	
@@ -153,7 +160,18 @@ class DisplayPinViewController: UIViewController {
 		})
 		
 	}
-
+	
+	func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
+		let partyRef = Database.database().reference().child("Parties").child(partyID)
+		partyRef.removeValue() // remove party if disconnecting vc
+	}
+	
+	@IBAction func backButtonTapped(_ sender: Any) {
+		let partyRef = Database.database().reference().child("Parties").child(partyID)
+		partyRef.removeValue() // remove party if disconnecting vc
+		self.dismiss(animated: true, completion: nil)
+	}
+	
 }
 
 

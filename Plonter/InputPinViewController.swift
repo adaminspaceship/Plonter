@@ -46,7 +46,7 @@ class InputPinViewController: UIViewController, PinCodeTextFieldDelegate {
 		activityIndicator.startAnimating()
 		let user_id = UserDefaults.standard.string(forKey: "user_name")
 		let partyRef = Database.database().reference().child("Parties").child(partyID)
-		partyRef.observe(.value) { (snapshot) in
+		partyRef.observeSingleEvent(of: .value) { (snapshot) in
 			let json = JSON(snapshot.value!)
 			if !json.isEmpty {
 				let members = json["members"]
@@ -64,9 +64,6 @@ class InputPinViewController: UIViewController, PinCodeTextFieldDelegate {
 				self.activityIndicator.stopAnimating()
 				Utilities.vibratePhone(.Peek)
 				self.performSegue(withIdentifier: "toParty", sender: self)
-				
-				
-				
 			} else if json.isEmpty { self.activityIndicator.stopAnimating() }
 		}
 	}
@@ -106,6 +103,9 @@ class InputPinViewController: UIViewController, PinCodeTextFieldDelegate {
 		}
 	}
 
+	@IBAction func backButtonTapped(_ sender: Any) {
+		self.dismiss(animated: true, completion: nil)
+	}
 	
     
     // MARK: - Navigation

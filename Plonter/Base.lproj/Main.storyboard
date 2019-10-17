@@ -11,7 +11,7 @@
         <!--Name-->
         <scene sceneID="6LH-p6-ivR">
             <objects>
-                <viewController storyboardIdentifier="UserCreateViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="d3g-Rb-rFm" customClass="UserCreateViewController" customModule="Plonter" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="UserCreateViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="d3g-Rb-rFm" customClass="UserCreateViewController" customModule="Shirli" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="p8W-gI-j3c">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -62,6 +62,7 @@
                     </tabBarItem>
                     <connections>
                         <outlet property="firstNameTextField" destination="bMZ-x0-MZL" id="4Ee-ib-HSl"/>
+                        <segue destination="BYZ-38-t0r" kind="presentation" identifier="toMainScreen" modalPresentationStyle="fullScreen" id="qEg-7s-PPR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q9Y-hi-Xwo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -71,7 +72,7 @@
         <!--Join-->
         <scene sceneID="ilr-GI-u78">
             <objects>
-                <viewController storyboardIdentifier="InputPinViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="3NS-h0-Iej" customClass="InputPinViewController" customModule="Plonter" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="InputPinViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="3NS-h0-Iej" customClass="InputPinViewController" customModule="Shirli" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="JWw-73-O6V">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -99,7 +100,7 @@
                                 <rect key="frame" x="177" y="396" width="21" height="20"/>
                             </activityIndicatorView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Input party pin" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lhz-6K-82G">
-                                <rect key="frame" x="45" y="37" width="285" height="69"/>
+                                <rect key="frame" x="45" y="57" width="285" height="69"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="285" id="6gy-OW-Gyn"/>
                                     <constraint firstAttribute="height" constant="69" id="MmT-ND-SUF"/>
@@ -108,17 +109,30 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MOl-zA-udd">
+                                <rect key="frame" x="9" y="9" width="80" height="43"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="43" id="3pe-KX-NwW"/>
+                                    <constraint firstAttribute="width" constant="80" id="jTX-uN-Hmt"/>
+                                </constraints>
+                                <state key="normal" title="Back"/>
+                                <connections>
+                                    <action selector="backButtonTapped:" destination="3NS-h0-Iej" eventType="touchUpInside" id="pwf-6U-PTA"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="MOl-zA-udd" firstAttribute="top" secondItem="CQ0-zN-mAa" secondAttribute="top" constant="9" id="7BS-wu-pup"/>
                             <constraint firstItem="Uez-vs-Vrn" firstAttribute="leading" secondItem="CQ0-zN-mAa" secondAttribute="leading" constant="177" id="7iL-p1-fon"/>
                             <constraint firstItem="CQ0-zN-mAa" firstAttribute="bottom" secondItem="Uez-vs-Vrn" secondAttribute="bottom" constant="308" id="A3q-4v-1ZA"/>
                             <constraint firstItem="kBC-X6-hpv" firstAttribute="leading" secondItem="CQ0-zN-mAa" secondAttribute="leading" constant="53" id="KO8-ma-BJg"/>
                             <constraint firstItem="Uez-vs-Vrn" firstAttribute="centerY" secondItem="JWw-73-O6V" secondAttribute="centerY" constant="27" id="MpD-jg-HrR"/>
-                            <constraint firstItem="kBC-X6-hpv" firstAttribute="top" secondItem="Lhz-6K-82G" secondAttribute="bottom" constant="35" id="OJp-4f-lC0"/>
+                            <constraint firstItem="kBC-X6-hpv" firstAttribute="top" secondItem="Lhz-6K-82G" secondAttribute="bottom" constant="15" id="OJp-4f-lC0"/>
                             <constraint firstItem="Lhz-6K-82G" firstAttribute="centerX" secondItem="JWw-73-O6V" secondAttribute="centerX" id="PpA-z7-Jxh"/>
                             <constraint firstItem="kBC-X6-hpv" firstAttribute="centerX" secondItem="Lhz-6K-82G" secondAttribute="centerX" id="QHh-RM-K6x"/>
                             <constraint firstItem="Uez-vs-Vrn" firstAttribute="centerX" secondItem="JWw-73-O6V" secondAttribute="centerX" id="QNf-SO-a2o"/>
+                            <constraint firstItem="MOl-zA-udd" firstAttribute="leading" secondItem="CQ0-zN-mAa" secondAttribute="leading" constant="9" id="R1t-ew-OSp"/>
                             <constraint firstItem="kBC-X6-hpv" firstAttribute="centerX" secondItem="JWw-73-O6V" secondAttribute="centerX" id="b55-OM-nBh"/>
                             <constraint firstItem="Lhz-6K-82G" firstAttribute="centerX" secondItem="JWw-73-O6V" secondAttribute="centerX" id="eHl-dV-vCe"/>
                             <constraint firstItem="kBC-X6-hpv" firstAttribute="centerX" secondItem="Uez-vs-Vrn" secondAttribute="centerX" id="icD-xH-brf"/>
@@ -139,12 +153,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sa6-8J-62S" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2129" y="-502"/>
+            <point key="canvasLocation" x="2128.8000000000002" y="-502.46305418719214"/>
         </scene>
         <!--Party View Controller-->
         <scene sceneID="RmI-eI-lWc">
             <objects>
-                <viewController storyboardIdentifier="PartyViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Kyc-aT-yOG" customClass="PartyViewController" customModule="Plonter" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PartyViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Kyc-aT-yOG" customClass="PartyViewController" customModule="Shirli" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="RCj-bH-a77">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -230,14 +244,14 @@
         <!--Home-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="ViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="ViewController" customModule="Plonter" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="ViewController" customModule="Shirli" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R94-rv-F9n">
                                 <rect key="frame" x="27" y="339" width="321" height="66"/>
-                                <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="66" id="F6C-uc-vg1"/>
                                 </constraints>
@@ -263,7 +277,7 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cNY-Tu-zdn">
                                 <rect key="frame" x="27" y="486" width="321" height="66"/>
-                                <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="66" id="igB-5w-2Xy"/>
                                 </constraints>
@@ -311,6 +325,7 @@
                     <tabBarItem key="tabBarItem" title="Home" image="house" id="1B7-Db-ypR">
                         <inset key="imageInsets" minX="50" minY="50" maxX="50" maxY="50"/>
                     </tabBarItem>
+                    <navigationItem key="navigationItem" id="0ZI-AW-Wxt"/>
                     <connections>
                         <outlet property="hiNameLabel" destination="hrX-60-g2E" id="Znu-06-fbl"/>
                     </connections>
@@ -322,7 +337,7 @@
         <!--Display Pin View Controller-->
         <scene sceneID="btA-Mx-TwS">
             <objects>
-                <viewController id="jw3-xI-UII" customClass="DisplayPinViewController" customModule="Plonter" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="jw3-xI-UII" customClass="DisplayPinViewController" customModule="Shirli" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="g06-kZ-BZ8">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -337,10 +352,10 @@
                                 <rect key="frame" x="147.66666666666666" y="605" width="80" height="54"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="35"/>
                                 <state key="normal" title="Done">
-                                    <color key="titleColor" systemColor="systemOrangeColor" red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <state key="disabled">
-                                    <color key="titleColor" systemColor="tertiaryLabelColor" red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleColor" systemColor="tertiaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="didPressDone:" destination="jw3-xI-UII" eventType="touchUpInside" id="Mc7-IY-fis"/>
@@ -420,6 +435,17 @@
                                     <action selector="didPressSharePin:" destination="jw3-xI-UII" eventType="touchUpInside" id="O7w-kL-dYl"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EOd-Gu-2Sv">
+                                <rect key="frame" x="9" y="9" width="83" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="7r4-lh-K6x"/>
+                                    <constraint firstAttribute="width" constant="83" id="ft2-c5-Wkc"/>
+                                </constraints>
+                                <state key="normal" title="Back"/>
+                                <connections>
+                                    <action selector="backButtonTapped:" destination="jw3-xI-UII" eventType="touchUpInside" id="1mK-XT-j3Y"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -430,12 +456,14 @@
                             <constraint firstItem="rNv-Zs-Aax" firstAttribute="centerX" secondItem="fFC-Gi-2hK" secondAttribute="centerX" id="PwF-Ql-nRy"/>
                             <constraint firstItem="rNv-Zs-Aax" firstAttribute="centerX" secondItem="g06-kZ-BZ8" secondAttribute="centerX" id="Pxb-PA-zAV"/>
                             <constraint firstItem="PyV-7Q-CG0" firstAttribute="top" secondItem="fFC-Gi-2hK" secondAttribute="bottom" constant="63" id="QXz-Sn-EK5"/>
+                            <constraint firstItem="EOd-Gu-2Sv" firstAttribute="leading" secondItem="wi3-qG-lZO" secondAttribute="leading" constant="9" id="SF2-Q4-Yau"/>
                             <constraint firstItem="fFC-Gi-2hK" firstAttribute="centerX" secondItem="PyV-7Q-CG0" secondAttribute="centerX" id="Vhb-6a-BKe"/>
                             <constraint firstItem="ZWs-hY-WGc" firstAttribute="top" secondItem="rNv-Zs-Aax" secondAttribute="bottom" constant="16" id="bb9-tB-aXV"/>
                             <constraint firstItem="Lef-mO-d9F" firstAttribute="leading" secondItem="ZWs-hY-WGc" secondAttribute="trailing" constant="27.329999999999998" id="csP-xw-JTm"/>
                             <constraint firstItem="PyV-7Q-CG0" firstAttribute="centerX" secondItem="gf1-84-sUx" secondAttribute="centerX" id="elY-zP-Vey"/>
                             <constraint firstItem="wi3-qG-lZO" firstAttribute="bottom" secondItem="Sy1-ql-T5n" secondAttribute="bottom" constant="65" id="l6w-vq-KQV"/>
                             <constraint firstItem="rNv-Zs-Aax" firstAttribute="top" secondItem="wi3-qG-lZO" secondAttribute="top" constant="177" id="ou3-aC-tZo"/>
+                            <constraint firstItem="EOd-Gu-2Sv" firstAttribute="top" secondItem="wi3-qG-lZO" secondAttribute="top" constant="9" id="tBA-wL-KVx"/>
                             <constraint firstItem="fFC-Gi-2hK" firstAttribute="top" secondItem="ZWs-hY-WGc" secondAttribute="bottom" constant="30" id="wUC-Mn-YGa"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="wi3-qG-lZO"/>
@@ -457,7 +485,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fQL-yG-uoo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2129" y="811"/>
+            <point key="canvasLocation" x="2128.8000000000002" y="810.59113300492618"/>
         </scene>
     </scenes>
     <resources>
@@ -467,6 +495,7 @@
         <image name="share" width="64" height="64"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="RVP-qj-WXc"/>
+        <segue reference="rXA-tO-mz7"/>
+        <segue reference="0xh-Fc-f0n"/>
     </inferredMetricsTieBreakers>
 </document>
