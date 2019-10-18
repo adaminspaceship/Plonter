@@ -45,10 +45,18 @@ class PartyViewController: UIViewController {
 		myColorLabel.textColor = myColorView.backgroundColor?.isDarkColor == true ? .white : .black
 		UIApplication.shared.isIdleTimerDisabled = true
 		
+		ref.child("totalMembers").observe(.value) { (snapshot) in
+			if snapshot.exists() {
+				let totalMembersJSON = JSON(snapshot.value!)
+				self.totalMembers = totalMembersJSON.intValue
+				self.shouldStart()
+			} else {
+				self.totalMembers = 999
+			}
+		}
+		
 		ref.observeSingleEvent(of: .value) { (snapshot) in
 			let partyJSON = JSON(snapshot.value!)
-			let totalMembers = partyJSON["totalMembers"].intValue
-			self.totalMembers = totalMembers
 			let partyPin = partyJSON["pin"].stringValue
 			self.myColorLabel.text = "Party Pin: \(partyPin)"
 		}
@@ -71,6 +79,7 @@ class PartyViewController: UIViewController {
 		let ref = Database.database().reference().child("Parties").child(partyID)
 		ref.child("members").observe(.childAdded) { (snapshot) in
 			let memberHEX = JSON(snapshot.key).stringValue
+			print("snapshot: \(snapshot.value!)")
 			if latestMemberXCoordinates > self.view.frame.width { latestMemberXCoordinates = self.view.frame.width/4 ; latestMemberYCoordinates+=125 }
 			let bubble = UIView(frame: CGRect(x: Int(latestMemberXCoordinates), y: latestMemberYCoordinates, width: 1, height: 1))
 			let userColor = UIColor(hexString: "#\(memberHEX)")
@@ -98,13 +107,10 @@ class PartyViewController: UIViewController {
 			latestMemberXCoordinates+=200
 			
 			if self.membersAdded == self.totalMembers {
-				if self.isCreator {
-					// start game
-					ref.child("shouldStart").setValue(true)
-					self.startTimer()
-				} else if !self.isCreator {
-					self.startClientTimer()
-				}
+				self.shouldStart()
+			} else if self.totalMembers == 999 {
+				print("Waiting for host to start")
+				self.secondsLeft.text = "Waiting for host to start"
 			} else {
 				print("members added: \(self.membersAdded), total members: \(self.totalMembers)")
 				self.secondsLeft.text = "Waiting for \(self.totalMembers-self.membersAdded) more to join" // change
@@ -112,6 +118,20 @@ class PartyViewController: UIViewController {
 			
 		}
 		
+	}
+	
+	
+	func shouldStart() {
+		let ref = Database.database().reference().child("Parties").child(partyID)
+		if !(timer?.isValid ?? false ) {
+			if self.isCreator {
+				// start game
+				ref.child("shouldStart").setValue(true)
+				self.startTimer()
+			} else if !self.isCreator {
+				self.startClientTimer()
+			}
+		}
 	}
 	
 	func startTimer() {

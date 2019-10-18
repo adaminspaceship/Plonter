@@ -42,6 +42,7 @@ class DisplayPinViewController: UIViewController, UIAdaptivePresentationControll
 		secondsStepper.value = 1
 		hideButton(button: doneButton, shouldHide: true)
     }
+	
     
 	@IBAction func didPressSharePin(_ sender: Any) {
 		createURL()

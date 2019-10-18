@@ -12,7 +12,7 @@ import FirebaseDatabase
 import SwiftyJSON
 
 class InputPinViewController: UIViewController, PinCodeTextFieldDelegate {
-
+	
 	@IBOutlet weak var activityIndicator: UIActivityIndicatorView!
 	@IBOutlet weak var pinCodeField: PinCodeTextField!
 	var partyID = String()
@@ -25,14 +25,12 @@ class InputPinViewController: UIViewController, PinCodeTextFieldDelegate {
 		pinCodeField.keyboardType = .numberPad
 		pinCodeField.becomeFirstResponder()
 		//Looks for single or multiple taps.
-		let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+		let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
 		view.addGestureRecognizer(tap)
 		if FromDelegate {
 			self.shouldJoinPartyFromDelegate(self.partyID)
 		}
     }
-	
-	// add member to party
 
 	func textFieldDidEndEditing(_ textField: PinCodeTextField) {
 		// check if textfield is blank
